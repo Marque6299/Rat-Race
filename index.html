@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rat Race Escape - Financial Education Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="start-overlay" class="start-overlay active">
+        <div class="start-card">
+            <h1>Escape the Rat Race</h1>
+            <p class="start-subtitle">Choose how you want to begin your journey</p>
+            <div class="start-options">
+                <button id="start-new-btn" class="btn-primary small">Start New Game</button>
+                <button id="start-continue-btn" class="btn-secondary small" disabled>Continue</button>
+                <button id="start-key-btn" class="btn-secondary small">Start With Key</button>
+            </div>
+            <div id="start-key-panel" class="start-key-panel">
+                <textarea id="start-key-input" placeholder="Paste your save key here"></textarea>
+                <button id="load-key-btn" class="btn-primary small">Load Key</button>
+            </div>
+            <p id="start-continue-note" class="start-note"></p>
+            <p class="start-help">Need a refresher? <a href="instructions.html" target="_blank">Read the game guide.</a></p>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <!-- Character Creation Screen -->
+        <div id="character-creation" class="screen active">
+            <div class="screen-content">
+                <h1>🎯 Escape the Rat Race</h1>
+                <p class="subtitle">A Financial Education Adventure</p>
+                
+                <div class="creation-form">
+                    <h2>Create Your Character</h2>
+                    
+                    <div class="form-group">
+                        <label for="player-name">Your Name:</label>
+                        <input type="text" id="player-name" placeholder="Enter your name" maxlength="20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Choose Your Starting Trait:</label>
+                        <div class="trait-selection">
+                            <div class="trait-card" data-trait="frugal">
+                                <h3>💰 Frugal</h3>
+                                <p>+20% savings rate, -10% lifestyle expenses</p>
+                            </div>
+                            <div class="trait-card" data-trait="risk-taker">
+                                <h3>🎲 Risk Taker</h3>
+                                <p>+15% investment returns, -10% stability</p>
+                            </div>
+                            <div class="trait-card" data-trait="analyst">
+                                <h3>📊 Analyst</h3>
+                                <p>Better market insights, +10% trading accuracy</p>
+                            </div>
+                            <div class="trait-card" data-trait="entrepreneur">
+                                <h3>🚀 Entrepreneur</h3>
+                                <p>+25% business income, higher risk tolerance</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="start-game-btn" class="btn-primary" disabled>Start Your Journey</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Screen -->
+        <div id="game-screen" class="screen">
+            <header class="game-header">
+                <div class="player-info">
+                    <div>
+                        <h2 id="player-name-display">Player</h2>
+                        <div class="trait-badge" id="trait-display">Trait</div>
+                    </div>
+                    <button class="btn-secondary small header-save-btn" onclick="openSaveKeyModal()">🔐 Save Key</button>
+                </div>
+                <div class="header-center">
+                    <div class="turn-info">
+                        <span>Turn: <strong id="turn-count">1</strong></span>
+                        <span>Year: <strong id="year-display">2024</strong></span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="next-turn-btn" class="btn-next-turn">⏭️ Next Turn</button>
+                </div>
+            </header>
+
+            <div class="dashboard-layout">
+                <!-- Left Sidebar: Essential Info -->
+                <div class="dashboard-sidebar left-sidebar">
+                    <div class="dashboard-card compact">
+                        <h3>💰 Financial</h3>
+                        <div class="stat-grid-compact">
+                            <div class="stat-item-compact">
+                                <label>Cash:</label>
+                                <span id="cash-display" class="money">$0</span>
+                            </div>
+                            <div class="stat-item-compact">
+                                <label>Net Worth:</label>
+                                <span id="networth-display" class="money">$0</span>
+                            </div>
+                            <div class="stat-item-compact">
+                                <label>Income:</label>
+                                <span id="income-display" class="money">$0</span>
+                            </div>
+                            <div class="stat-item-compact">
+                                <label>Expenses:</label>
+                                <span id="expenses-display" class="money">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card compact">
+                        <h3>📈 Financial Health</h3>
+                        <div class="health-bar-container-compact">
+                            <div class="health-bar-compact">
+                                <div id="health-bar-fill" class="health-fill"></div>
+                            </div>
+                            <span id="health-score" class="health-score-compact">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card compact">
+                        <h3>💚 Physical Health</h3>
+                        <div class="health-bar-container-compact">
+                            <div class="health-bar-compact">
+                                <div id="physical-health-bar" class="health-fill"></div>
+                            </div>
+                            <span id="physical-health-score" class="health-score-compact">100%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center: Dashboard Main -->
+                <div class="dashboard-main">
+                    <!-- Navigation Menu -->
+                    <div class="dashboard-nav">
+                        <button class="nav-btn" onclick="openPortfolioModal()">
+                            <span class="nav-icon">💼</span>
+                            <span class="nav-label">Portfolio</span>
+                        </button>
+                        <button class="nav-btn" onclick="openLoansModal()">
+                            <span class="nav-icon">🏦</span>
+                            <span class="nav-label">Loans</span>
+                        </button>
+                        <button class="nav-btn" onclick="openPropertiesModal()">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-label">Properties</span>
+                        </button>
+                        <button class="nav-btn" onclick="openNeedsModal()">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-label">Needs & Wants</span>
+                        </button>
+                        <button class="nav-btn" onclick="openHabitsModal()">
+                            <span class="nav-icon">⚠️</span>
+                            <span class="nav-label">Habits</span>
+                        </button>
+                        <button class="nav-btn" onclick="showAIDetails()">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-label">AI Status</span>
+                        </button>
+                    </div>
+
+                    <!-- Story and Events Section (Horizontal) -->
+                    <div class="story-events-container">
+                        <div class="dashboard-card story-card compact">
+                            <h3>📖 Your Story</h3>
+                            <div id="story-display" class="story-text-compact">
+                                Welcome to your financial journey! Make decisions each turn to escape the rat race.
+                            </div>
+                        </div>
+                        <div class="dashboard-card compact">
+                            <h3>⚡ Events</h3>
+                            <div id="events-display" class="events-display-compact"></div>
+                        </div>
+                    </div>
+
+                    <!-- Actions Section -->
+                    <div class="dashboard-card compact">
+                        <h3>🎯 Actions</h3>
+                        <div class="action-buttons-grid-compact">
+                            <button class="action-btn-compact" data-action="work">
+                                <span class="action-icon">💼</span>
+                                <span class="action-label">Work</span>
+                            </button>
+                            <button class="action-btn-compact" data-action="invest">
+                                <span class="action-icon">📈</span>
+                                <span class="action-label">Invest</span>
+                            </button>
+                            <button class="action-btn-compact" data-action="trade">
+                                <span class="action-icon">📊</span>
+                                <span class="action-label">Trade</span>
+                            </button>
+                            <button class="action-btn-compact" data-action="learn">
+                                <span class="action-icon">📚</span>
+                                <span class="action-label">Learn</span>
+                            </button>
+                            <button class="action-btn-compact" data-action="bank">
+                                <span class="action-icon">🏦</span>
+                                <span class="action-label">Bank</span>
+                            </button>
+                            <button class="action-btn-compact" data-action="spend">
+                                <span class="action-icon">🛒</span>
+                                <span class="action-label">Spend</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar: Quick Stats -->
+                <div class="dashboard-sidebar right-sidebar">
+                    <div class="dashboard-card compact">
+                        <h3>😊 Mood</h3>
+                        <div class="health-bar-container-compact">
+                            <div class="health-bar-compact">
+                                <div id="mood-bar" class="health-fill"></div>
+                            </div>
+                            <span id="mood-score" class="health-score-compact">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card compact">
+                        <h3>📊 Quick Stats</h3>
+                        <div class="quick-stats-compact">
+                            <div class="quick-stat-item-compact">
+                                <div class="quick-stat-label-compact">This Month</div>
+                                <div class="quick-stat-value-compact" id="monthly-net">$0</div>
+                            </div>
+                            <button class="nav-btn-small" onclick="openMonthlyDetailsModal()">Details →</button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card compact">
+                        <h3>💼 Portfolio</h3>
+                        <div class="portfolio-summary-compact">
+                            <div class="portfolio-summary-item-compact">
+                                <span>Total:</span>
+                                <span id="portfolio-total">$0</span>
+                            </div>
+                            <button class="nav-btn-small" onclick="openPortfolioModal()">Details →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Modal -->
+    <div id="action-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Action</h2>
+            <div id="modal-body"></div>
+            <div class="modal-actions">
+                <button id="modal-confirm" class="btn-primary">Confirm</button>
+                <button id="modal-cancel" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Markets Modal -->
+    <div id="markets-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px; max-height: 90vh;">
+            <span class="close" onclick="closeMarketsModal()">&times;</span>
+            <h2>📊 Trading Markets</h2>
+            <div style="margin-bottom: 15px;">
+                <select id="market-type-select" class="modal-form-group" style="width: 100%; padding: 10px; background: var(--bg-dark); border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 16px;">
+                    <option value="stocks">Stocks</option>
+                    <option value="bonds">Bonds</option>
+                    <option value="forex">Forex</option>
+                    <option value="commodities">Commodities</option>
+                    <option value="crypto">Crypto</option>
+                </select>
+            </div>
+            <div id="market-display" class="market-content" style="max-height: 400px; overflow-y: auto;"></div>
+            <div id="market-chart-container" style="margin-top: 20px; display: none;">
+                <h4 style="margin-bottom: 10px; color: var(--text-primary);">Price Chart (Historical Data)</h4>
+                <canvas id="market-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Investment Opportunities Modal -->
+    <div id="investment-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px; max-height: 90vh;">
+            <span class="close" onclick="closeInvestmentModal()">&times;</span>
+            <h2>💼 Investment Opportunities</h2>
+            <div style="margin-bottom: 15px;">
+                <select id="investment-type-select" class="modal-form-group" style="width: 100%; padding: 10px; background: var(--bg-dark); border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 16px;">
+                    <option value="business">Create/Buy Business</option>
+                    <option value="auctions">Auctions</option>
+                    <option value="properties">Property Market</option>
+                    <option value="quick">Quick Investments</option>
+                </select>
+            </div>
+            <div id="investment-display" style="max-height: 500px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal -->
+    <div id="portfolio-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close" onclick="closeModalById('portfolio-modal')">&times;</span>
+            <h2>💼 Portfolio</h2>
+            <div id="portfolio-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Loans Modal -->
+    <div id="loans-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeModalById('loans-modal')">&times;</span>
+            <h2>🏦 Loans</h2>
+            <div id="loans-modal-content"></div>
+            <div style="margin-top: 20px;">
+                <button class="btn-primary" onclick="openLoanModal(); closeModalById('loans-modal');">Take New Loan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Properties Modal -->
+    <div id="properties-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeModalById('properties-modal')">&times;</span>
+            <h2>🏠 Properties</h2>
+            <div id="properties-modal-content"></div>
+            <div style="margin-top: 20px;">
+                <button class="btn-primary" onclick="openPropertyModal(); closeModalById('properties-modal');">Buy Property</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Needs & Wants Modal -->
+    <div id="needs-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeModalById('needs-modal')">&times;</span>
+            <h2>🏠 Needs & Wants</h2>
+            <div id="needs-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Habits Modal -->
+    <div id="habits-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close" onclick="closeModalById('habits-modal')">&times;</span>
+            <h2>⚠️ Bad Habits</h2>
+            <div id="habits-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Monthly Details Modal -->
+    <div id="monthly-details-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close" onclick="closeModalById('monthly-details-modal')">&times;</span>
+            <h2>📊 Monthly Details</h2>
+            <div id="monthly-details-content"></div>
+        </div>
+    </div>
+
+    <!-- Bank Modal -->
+    <div id="bank-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close" onclick="closeModalById('bank-modal')">&times;</span>
+            <h2>🏦 Bank</h2>
+            <div style="margin-bottom: 20px;">
+                <div class="bank-tabs">
+                    <button class="bank-tab-btn active" data-tab="account">Account</button>
+                    <button class="bank-tab-btn" data-tab="credit">Credit Score</button>
+                    <button class="bank-tab-btn" data-tab="loans">Loans</button>
+                </div>
+            </div>
+            <div id="bank-content"></div>
+        </div>
+    </div>
+
+    <!-- Logs Modal -->
+    <div id="logs-modal" class="modal">
+        <div class="modal-content" style="max-width: 1200px; max-height: 90vh;">
+            <span class="close" onclick="closeModalById('logs-modal')">&times;</span>
+            <h2>📋 Financial Logs</h2>
+            <div style="margin-bottom: 20px;">
+                <div class="bank-tabs">
+                    <button class="logs-tab-btn active" data-tab="transactions">Transactions</button>
+                    <button class="logs-tab-btn" data-tab="events">Events</button>
+                    <button class="logs-tab-btn" data-tab="financial">Financial Status</button>
+                </div>
+            </div>
+            <div id="logs-content" style="max-height: 600px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- Save Key Modal -->
+    <div id="savekey-modal" class="modal">
+        <div class="modal-content savekey-content" style="max-width: 700px;">
+            <span class="close" onclick="closeModalById('savekey-modal')">&times;</span>
+            <h2>🔐 Save & Share</h2>
+            <p class="savekey-subtitle">Copy your encrypted save key or load a save from another device.</p>
+            <div class="savekey-grid">
+                <div class="savekey-panel">
+                    <h3>Export</h3>
+                    <p>Generate an encoded key representing your entire progress. Keep it safe.</p>
+                    <button class="btn-primary" onclick="generateSaveKey()" style="width: 100%;">Generate Save Key</button>
+                    <textarea id="exported-save-key" readonly placeholder="Generate a save key to copy"></textarea>
+                    <button class="btn-secondary" onclick="copySaveKey()" style="margin-top: 8px;">Copy to Clipboard</button>
+                </div>
+                <div class="savekey-panel">
+                    <h3>Import</h3>
+                    <p>Paste a valid key to restore your progress on any browser.</p>
+                    <textarea id="import-save-key" placeholder="Paste a save key to load"></textarea>
+                    <button class="btn-primary" onclick="loadGameFromKeyInput()" style="margin-top: 8px;">Load From Key</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <script src="needs-system.js"></script>
+    <script src="ai-system.js"></script>
+    <script src="opportunities-system.js"></script>
+    <script src="bank-system.js"></script>
+    <script src="logs-system.js"></script>
+    <script src="dashboard-modals.js"></script>
+    <script src="game.js"></script>
+    <script src="save-system.js"></script>
+</body>
+</html>
+
