@@ -41,24 +41,9 @@
                     </div>
                     
                     <div class="form-group">
-                        <label>Choose Your Starting Trait:</label>
-                        <div class="trait-selection">
-                            <div class="trait-card" data-trait="frugal">
-                                <h3>💰 Frugal</h3>
-                                <p>+20% savings rate, -10% lifestyle expenses</p>
-                            </div>
-                            <div class="trait-card" data-trait="risk-taker">
-                                <h3>🎲 Risk Taker</h3>
-                                <p>+15% investment returns, -10% stability</p>
-                            </div>
-                            <div class="trait-card" data-trait="analyst">
-                                <h3>📊 Analyst</h3>
-                                <p>Better market insights, +10% trading accuracy</p>
-                            </div>
-                            <div class="trait-card" data-trait="entrepreneur">
-                                <h3>🚀 Entrepreneur</h3>
-                                <p>+25% business income, higher risk tolerance</p>
-                            </div>
+                        <label>Choose Your Character:</label>
+                        <div class="trait-selection" id="character-selection" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <!-- Characters will be populated by JavaScript -->
                         </div>
                     </div>
                     
@@ -69,24 +54,94 @@
 
         <!-- Main Game Screen -->
         <div id="game-screen" class="screen">
-            <header class="game-header">
-                <div class="player-info">
+            <header class="game-header" style="padding: 10px 20px; min-height: 60px;">
+                <div class="header-section header-left" style="display: flex; align-items: center; gap: 12px;">
+                    <div style="font-size: 2em; cursor: pointer;" id="profile-icon-btn" title="View Profile">
+                        <span id="character-icon-display">👤</span>
+                    </div>
                     <div>
-                        <h2 id="player-name-display">Player</h2>
-                        <div class="trait-badge" id="trait-display">Trait</div>
-                    </div>
-                    <button class="btn-secondary small header-save-btn" onclick="openSaveKeyModal()">🔐 Save Key</button>
-                </div>
-                <div class="header-center">
-                    <div class="turn-info">
-                        <span>Turn: <strong id="turn-count">1</strong></span>
-                        <span>Year: <strong id="year-display">2024</strong></span>
+                        <h2 id="player-name-display" style="margin: 0; font-size: 1.3em;">Player</h2>
+                        <div style="font-size: 0.75em; color: var(--text-secondary);">
+                            Turn <span id="turn-count-header">1</span> • <span id="year-display-header">2024</span>
+                        </div>
                     </div>
                 </div>
-                <div class="header-actions">
-                    <button id="next-turn-btn" class="btn-next-turn">⏭️ Next Turn</button>
+                <div class="header-section header-right" style="display: flex; align-items: center; gap: 10px;">
+                    <button class="btn-secondary small header-btn" onclick="openInstructionsPage()" title="View Instructions (?)">
+                        <span class="btn-icon">📖</span>
+                    </button>
+                    <button class="btn-secondary small header-btn" id="profile-header-btn" title="Player Profile">
+                        <span class="btn-icon">👤</span>
+                    </button>
+                    <button class="btn-secondary small header-btn" onclick="openSaveKeyModal()" title="Save Game">
+                        <span class="btn-icon">🔐</span>
+                    </button>
+                    <button id="next-turn-btn" class="btn-next-turn" title="Advance to next turn (Space)">
+                        <span class="btn-icon">⏭️</span>
+                        <span class="btn-text">Next Turn</span>
+                    </button>
                 </div>
             </header>
+            
+            <!-- Navigation Row -->
+            <div class="dashboard-nav">
+                <button class="nav-btn" onclick="openPortfolioModal()">
+                    <span class="nav-icon">💼</span>
+                    <span class="nav-label">Portfolio</span>
+                </button>
+                <button class="nav-btn" onclick="openLoansModal()">
+                    <span class="nav-icon">🏦</span>
+                    <span class="nav-label">Loans</span>
+                </button>
+                <button class="nav-btn" onclick="openPropertiesModal()">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Properties</span>
+                </button>
+                <button class="nav-btn" onclick="openJobMarketModal()">
+                    <span class="nav-icon">💼</span>
+                    <span class="nav-label">Job Market</span>
+                </button>
+                <button class="nav-btn" onclick="openSkillTreeModal()">
+                    <span class="nav-icon">🌳</span>
+                    <span class="nav-label">Skill Tree</span>
+                </button>
+                <button class="nav-btn" onclick="openQuickInvestmentsModal()">
+                    <span class="nav-icon">💰</span>
+                    <span class="nav-label">Quick Invest</span>
+                </button>
+                <button class="nav-btn" onclick="openPortfolioManagementModal()">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Portfolio</span>
+                </button>
+                <button class="nav-btn" onclick="openAssetManagementModal()">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Asset Mgmt</span>
+                </button>
+                <button class="nav-btn" onclick="openBusinessBalanceSheetModal()">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-label">Businesses</span>
+                </button>
+                <button class="nav-btn" onclick="openNeedsModal()">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Needs & Wants</span>
+                </button>
+                <button class="nav-btn" onclick="openHabitsModal()">
+                    <span class="nav-icon">⚠️</span>
+                    <span class="nav-label">Habits</span>
+                </button>
+                <button class="nav-btn" onclick="showAIDetails()">
+                    <span class="nav-icon">🤖</span>
+                    <span class="nav-label">AI Status</span>
+                </button>
+                <button class="nav-btn" onclick="openContactsModal()">
+                    <span class="nav-icon">📇</span>
+                    <span class="nav-label">Contacts</span>
+                </button>
+                <button class="nav-btn" onclick="openActiveEffectsModal()">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Active Effects</span>
+                </button>
+            </div>
 
             <div class="dashboard-layout">
                 <!-- Left Sidebar: Essential Info -->
@@ -136,33 +191,6 @@
 
                 <!-- Center: Dashboard Main -->
                 <div class="dashboard-main">
-                    <!-- Navigation Menu -->
-                    <div class="dashboard-nav">
-                        <button class="nav-btn" onclick="openPortfolioModal()">
-                            <span class="nav-icon">💼</span>
-                            <span class="nav-label">Portfolio</span>
-                        </button>
-                        <button class="nav-btn" onclick="openLoansModal()">
-                            <span class="nav-icon">🏦</span>
-                            <span class="nav-label">Loans</span>
-                        </button>
-                        <button class="nav-btn" onclick="openPropertiesModal()">
-                            <span class="nav-icon">🏠</span>
-                            <span class="nav-label">Properties</span>
-                        </button>
-                        <button class="nav-btn" onclick="openNeedsModal()">
-                            <span class="nav-icon">🏠</span>
-                            <span class="nav-label">Needs & Wants</span>
-                        </button>
-                        <button class="nav-btn" onclick="openHabitsModal()">
-                            <span class="nav-icon">⚠️</span>
-                            <span class="nav-label">Habits</span>
-                        </button>
-                        <button class="nav-btn" onclick="showAIDetails()">
-                            <span class="nav-icon">🤖</span>
-                            <span class="nav-label">AI Status</span>
-                        </button>
-                    </div>
 
                     <!-- Story and Events Section (Horizontal) -->
                     <div class="story-events-container">
@@ -388,7 +416,16 @@
                     <button class="logs-tab-btn" data-tab="financial">Financial Status</button>
                 </div>
             </div>
-            <div id="logs-content" style="max-height: 600px; overflow-y: auto;"></div>
+            <div id="logs-content" style="max-height: 600px;"></div>
+        </div>
+    </div>
+
+    <!-- Turn Summary Modal -->
+    <div id="turn-summary-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px; max-height: 90vh;">
+            <span class="close" onclick="closeModalById('turn-summary-modal')">&times;</span>
+            <h2 id="turn-summary-title">📊 Turn Summary</h2>
+            <div id="turn-summary-content" style="flex: 1; overflow-y: auto; overflow-x: hidden;"></div>
         </div>
     </div>
 
@@ -401,16 +438,23 @@
             <div class="savekey-grid">
                 <div class="savekey-panel">
                     <h3>Export</h3>
-                    <p>Generate an encoded key representing your entire progress. Keep it safe.</p>
-                    <button class="btn-primary" onclick="generateSaveKey()" style="width: 100%;">Generate Save Key</button>
-                    <textarea id="exported-save-key" readonly placeholder="Generate a save key to copy"></textarea>
-                    <button class="btn-secondary" onclick="copySaveKey()" style="margin-top: 8px;">Copy to Clipboard</button>
+                    <p>Generate an encoded key or download a complete save file with all game data.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <button class="btn-primary" onclick="generateSaveKey()" style="width: 100%;">Generate Key</button>
+                        <button class="btn-primary" onclick="downloadSaveFile()" style="width: 100%;">📥 Download File</button>
+                    </div>
+                    <textarea id="exported-save-key" readonly placeholder="Generate a save key to copy" style="min-height: 100px;"></textarea>
+                    <button class="btn-secondary" onclick="copySaveKey()" style="width: 100%; margin-top: 8px;">Copy Key to Clipboard</button>
                 </div>
                 <div class="savekey-panel">
                     <h3>Import</h3>
-                    <p>Paste a valid key to restore your progress on any browser.</p>
-                    <textarea id="import-save-key" placeholder="Paste a save key to load"></textarea>
-                    <button class="btn-primary" onclick="loadGameFromKeyInput()" style="margin-top: 8px;">Load From Key</button>
+                    <p>Paste a save key or upload a save file to restore your complete progress.</p>
+                    <div style="margin-bottom: 10px;">
+                        <label style="display: block; margin-bottom: 5px; font-size: 0.9em;">Upload Save File:</label>
+                        <input type="file" id="save-file-input" accept=".json" onchange="loadSaveFile(event)" style="width: 100%; padding: 8px; background: var(--bg-dark); border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                    </div>
+                    <textarea id="import-save-key" placeholder="Or paste a save key here" style="min-height: 100px;"></textarea>
+                    <button class="btn-primary" onclick="loadGameFromKeyInput()" style="width: 100%; margin-top: 8px;">Load From Key</button>
                 </div>
             </div>
         </div>
@@ -419,12 +463,37 @@
     <!-- Toast Notification Container -->
     <div id="toast-container"></div>
 
+    <script src="modal-manager.js"></script>
+    <script src="player-attributes.js"></script>
+    <script src="market-economics.js"></script>
+    <script src="achievements-system.js"></script>
+    <script src="expanded-events.js"></script>
+    <script src="turn-summary.js"></script>
+    <script src="victory-modal.js"></script>
+    <script src="loan-payment-modal.js"></script>
     <script src="needs-system.js"></script>
     <script src="ai-system.js"></script>
     <script src="opportunities-system.js"></script>
     <script src="bank-system.js"></script>
     <script src="logs-system.js"></script>
+    <script src="character-system.js"></script>
+    <script src="skill-tree-system.js"></script>
+    <script src="job-market-system.js"></script>
+    <script src="quick-investments-system.js"></script>
+    <script src="badge-system.js"></script>
+    <script src="asset-management-system.js"></script>
+    <script src="portfolio-management-system.js"></script>
+    <script src="business-balance-sheet.js"></script>
+    <script src="player-profile-system.js"></script>
+    <script src="npc-contacts-system.js"></script>
+    <script src="event-tracking-system.js"></script>
+    <script src="active-effects-modal.js"></script>
     <script src="dashboard-modals.js"></script>
+    <script src="tax-system.js"></script>
+    <script src="insurance-system.js"></script>
+    <script src="family-system.js"></script>
+    <script src="analytics-system.js"></script>
+    <script src="scenarios-system.js"></script>
     <script src="game.js"></script>
     <script src="save-system.js"></script>
 </body>

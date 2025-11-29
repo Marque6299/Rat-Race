@@ -83,30 +83,72 @@ const marketAssets = {
         { name: 'FinanceBank', symbol: 'FNB', basePrice: 50 },
         { name: 'EnergyCo', symbol: 'ENG', basePrice: 75 },
         { name: 'HealthPharm', symbol: 'HLT', basePrice: 120 },
-        { name: 'RetailMart', symbol: 'RTM', basePrice: 40 }
+        { name: 'RetailMart', symbol: 'RTM', basePrice: 40 },
+        { name: 'CloudSoft', symbol: 'CLD', basePrice: 85 },
+        { name: 'AutoDrive', symbol: 'AUTO', basePrice: 60 },
+        { name: 'GreenEnergy', symbol: 'GRN', basePrice: 45 },
+        { name: 'MediaStream', symbol: 'MED', basePrice: 95 },
+        { name: 'FoodChain', symbol: 'FOOD', basePrice: 35 },
+        { name: 'AeroSpace', symbol: 'AERO', basePrice: 110 },
+        { name: 'BioTech', symbol: 'BIO', basePrice: 130 },
+        { name: 'Telecom', symbol: 'TEL', basePrice: 55 },
+        { name: 'RealEstate', symbol: 'RE', basePrice: 70 },
+        { name: 'MiningCorp', symbol: 'MIN', basePrice: 40 }
     ],
     bonds: [
         { name: 'Government 10Y', symbol: 'GOV10', basePrice: 1000, yield: 0.03 },
         { name: 'Corporate AAA', symbol: 'CORP', basePrice: 1000, yield: 0.045 },
-        { name: 'Municipal Bond', symbol: 'MUNI', basePrice: 1000, yield: 0.025 }
+        { name: 'Municipal Bond', symbol: 'MUNI', basePrice: 1000, yield: 0.025 },
+        { name: 'Government 30Y', symbol: 'GOV30', basePrice: 1000, yield: 0.035 },
+        { name: 'Corporate AA', symbol: 'CORPAA', basePrice: 1000, yield: 0.05 },
+        { name: 'High Yield', symbol: 'HY', basePrice: 1000, yield: 0.08 },
+        { name: 'Treasury 5Y', symbol: 'TRE5', basePrice: 1000, yield: 0.028 },
+        { name: 'International', symbol: 'INTL', basePrice: 1000, yield: 0.04 },
+        { name: 'Inflation Protected', symbol: 'TIPS', basePrice: 1000, yield: 0.025 }
     ],
     forex: [
         { name: 'USD/EUR', symbol: 'EUR', basePrice: 0.92 },
         { name: 'USD/GBP', symbol: 'GBP', basePrice: 0.79 },
         { name: 'USD/JPY', symbol: 'JPY', basePrice: 150 },
-        { name: 'USD/CNY', symbol: 'CNY', basePrice: 7.2 }
+        { name: 'USD/CNY', symbol: 'CNY', basePrice: 7.2 },
+        { name: 'USD/CAD', symbol: 'CAD', basePrice: 1.35 },
+        { name: 'USD/AUD', symbol: 'AUD', basePrice: 1.52 },
+        { name: 'USD/CHF', symbol: 'CHF', basePrice: 0.88 },
+        { name: 'USD/INR', symbol: 'INR', basePrice: 83.5 },
+        { name: 'USD/BRL', symbol: 'BRL', basePrice: 5.2 },
+        { name: 'USD/MXN', symbol: 'MXN', basePrice: 17.8 },
+        { name: 'USD/ZAR', symbol: 'ZAR', basePrice: 18.5 },
+        { name: 'USD/KRW', symbol: 'KRW', basePrice: 1350 }
     ],
     commodities: [
         { name: 'Gold', symbol: 'GOLD', basePrice: 2000, unit: 'oz' },
         { name: 'Oil', symbol: 'OIL', basePrice: 75, unit: 'barrel' },
         { name: 'Silver', symbol: 'SILV', basePrice: 25, unit: 'oz' },
-        { name: 'Copper', symbol: 'COPP', basePrice: 4, unit: 'lb' }
+        { name: 'Copper', symbol: 'COPP', basePrice: 4, unit: 'lb' },
+        { name: 'Platinum', symbol: 'PLAT', basePrice: 950, unit: 'oz' },
+        { name: 'Palladium', symbol: 'PALL', basePrice: 1200, unit: 'oz' },
+        { name: 'Natural Gas', symbol: 'NGAS', basePrice: 3.5, unit: 'MMBtu' },
+        { name: 'Wheat', symbol: 'WHEAT', basePrice: 6.5, unit: 'bushel' },
+        { name: 'Corn', symbol: 'CORN', basePrice: 5.2, unit: 'bushel' },
+        { name: 'Soybeans', symbol: 'SOY', basePrice: 12.8, unit: 'bushel' },
+        { name: 'Coffee', symbol: 'COFF', basePrice: 1.8, unit: 'lb' },
+        { name: 'Sugar', symbol: 'SUGAR', basePrice: 0.22, unit: 'lb' },
+        { name: 'Cotton', symbol: 'COT', basePrice: 0.85, unit: 'lb' },
+        { name: 'Cattle', symbol: 'CATTLE', basePrice: 1.65, unit: 'lb' }
     ],
     crypto: [
         { name: 'Bitcoin', symbol: 'BTC', basePrice: 45000 },
         { name: 'Ethereum', symbol: 'ETH', basePrice: 2500 },
         { name: 'Litecoin', symbol: 'LTC', basePrice: 75 },
-        { name: 'Cardano', symbol: 'ADA', basePrice: 0.5 }
+        { name: 'Cardano', symbol: 'ADA', basePrice: 0.5 },
+        { name: 'Binance Coin', symbol: 'BNB', basePrice: 320 },
+        { name: 'Solana', symbol: 'SOL', basePrice: 95 },
+        { name: 'Polkadot', symbol: 'DOT', basePrice: 7.2 },
+        { name: 'Chainlink', symbol: 'LINK', basePrice: 14.5 },
+        { name: 'Polygon', symbol: 'MATIC', basePrice: 0.85 },
+        { name: 'Avalanche', symbol: 'AVAX', basePrice: 35 },
+        { name: 'Uniswap', symbol: 'UNI', basePrice: 6.5 },
+        { name: 'Dogecoin', symbol: 'DOGE', basePrice: 0.08 }
     ]
 };
 
@@ -297,9 +339,18 @@ function updateMarkets() {
             const volatility = getMarketVolatility(marketType);
             const change = (Math.random() - 0.5) * volatility * asset.price;
             const oldPrice = asset.price;
-            asset.price = Math.max(asset.price + change, asset.basePrice * 0.1);
-            asset.change = change;
-            asset.changePercent = (change / oldPrice) * 100;
+            
+            // Base price change
+            let newPrice = Math.max(asset.price + change, asset.basePrice * 0.1);
+            
+            // Apply supply/demand if available
+            if (typeof calculatePriceWithSupplyDemand === 'function') {
+                newPrice = calculatePriceWithSupplyDemand(marketType, asset.symbol, newPrice);
+            }
+            
+            asset.price = newPrice;
+            asset.change = newPrice - oldPrice;
+            asset.changePercent = (asset.change / oldPrice) * 100;
             
             // Update price history (keep last 50 data points)
             if (!gameState.marketHistory[marketType][asset.symbol]) {
@@ -428,18 +479,49 @@ function updateNetWorth() {
 
 // Character Creation
 document.addEventListener('DOMContentLoaded', () => {
-    const traitCards = document.querySelectorAll('.trait-card');
     const startBtn = document.getElementById('start-game-btn');
     const playerNameInput = document.getElementById('player-name');
-
-    traitCards.forEach(card => {
-        card.addEventListener('click', () => {
-            traitCards.forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            gameState.player.trait = card.dataset.trait;
-            checkStartButton();
+    const characterSelection = document.getElementById('character-selection');
+    
+    // Populate character selection
+    if (characterSelection && typeof characterDefinitions !== 'undefined') {
+        characterSelection.innerHTML = characterDefinitions.map(character => {
+            const trait = traitEffects[character.trait] || {};
+            return `
+                <div class="trait-card character-card" data-character-id="${character.id}" style="cursor: pointer; text-align: center;">
+                    <div style="font-size: 3em; margin-bottom: 10px;">${character.icon}</div>
+                    <h3 style="margin: 0 0 8px 0;">${character.name}</h3>
+                    <p style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 10px;">${character.description}</p>
+                    <div style="background: var(--bg-dark); padding: 8px; border-radius: 6px; font-size: 0.8em; margin-bottom: 8px;">
+                        <div>Starting Cash: ${formatMoney(character.startingCash)}</div>
+                        <div>Starting Income: ${formatMoney(character.startingIncome)}/month</div>
+                    </div>
+                    ${character.preUnlockedSkills && character.preUnlockedSkills.length > 0 ? `
+                        <div style="font-size: 0.75em; color: var(--success-color); margin-top: 5px;">
+                            ✨ Pre-unlocked: ${character.preUnlockedSkills.map(id => {
+                                if (typeof skillDefinitions !== 'undefined') {
+                                    const skill = skillDefinitions.find(s => s.id === id);
+                                    return skill ? skill.name : id;
+                                }
+                                return id;
+                            }).join(', ')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }).join('');
+        
+        // Add click handlers
+        characterSelection.querySelectorAll('.character-card').forEach(card => {
+            card.addEventListener('click', () => {
+                characterSelection.querySelectorAll('.character-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                const characterId = card.dataset.characterId;
+                gameState.player.characterId = characterId;
+                checkStartButton();
+            });
         });
-    });
+    }
 
     playerNameInput.addEventListener('input', () => {
         gameState.player.name = playerNameInput.value.trim();
@@ -447,17 +529,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function checkStartButton() {
-        startBtn.disabled = !(gameState.player.name && gameState.player.trait);
+        startBtn.disabled = !(gameState.player.name && gameState.player.characterId);
     }
 
     startBtn.addEventListener('click', startGame);
+    
+    // Add hotkey for next turn (Space key)
+    document.addEventListener('keydown', (e) => {
+        // Only trigger if not typing in an input
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        
+        if (e.code === 'Space' && !e.repeat) {
+            e.preventDefault();
+            const nextTurnBtn = document.getElementById('next-turn-btn');
+            if (nextTurnBtn && !nextTurnBtn.disabled) {
+                nextTurnBtn.click();
+            }
+        }
+    });
 });
 
 function startGame() {
-    // Apply trait effects
-    const trait = traitEffects[gameState.player.trait];
-    if (trait.savingsBonus) {
-        gameState.player.monthlyExpenses *= (1 - trait.expenseReduction);
+    // Apply character selection
+    if (typeof applyCharacterSelection === 'function' && gameState.player.characterId) {
+        applyCharacterSelection(gameState.player.characterId);
+    } else {
+        // Fallback to trait-based system
+        const trait = traitEffects[gameState.player.trait];
+        if (trait && trait.savingsBonus) {
+            gameState.player.monthlyExpenses *= (1 - trait.expenseReduction);
+        }
     }
 
     // Initialize markets with historical data
@@ -488,6 +589,73 @@ function startGame() {
     if (typeof initializeLoggingSystem === 'function') {
         initializeLoggingSystem();
     }
+    
+    // Initialize skill tree system
+    if (typeof initializeSkillTree === 'function') {
+        initializeSkillTree();
+    }
+    
+    // Initialize job market system
+    if (typeof initializeJobMarket === 'function') {
+        initializeJobMarket();
+    }
+    
+    // Initialize quick investments system
+    if (typeof generateAvailableProducts === 'function') {
+        generateAvailableProducts();
+    }
+    
+    // Initialize badge system
+    if (typeof updateBadges === 'function') {
+        updateBadges();
+    }
+    
+    // Initialize NPC contacts system
+    if (typeof initializeNPCContacts === 'function') {
+        initializeNPCContacts();
+    }
+    
+    // Initialize property deterioration profiles
+    gameState.player.properties.forEach(property => {
+        if (!property.condition) property.condition = 100;
+        if (!property.lastMaintenance) property.lastMaintenance = gameState.turn;
+        if (!property.originalValue) property.originalValue = property.value;
+        if (!property.deteriorationProfile) {
+            property.deteriorationProfile = 'good';
+        }
+    });
+    
+    // Initialize player attributes (skills and luck)
+    if (typeof initializePlayerAttributes === 'function') {
+        initializePlayerAttributes();
+    }
+    
+    // Initialize market economics (supply and demand)
+    if (typeof initializeMarketConditions === 'function') {
+        initializeMarketConditions();
+    }
+    
+    // Initialize achievements system
+    if (typeof initializeAchievements === 'function') {
+        initializeAchievements();
+    }
+    
+    // Initialize tax system
+    if (typeof taxSystem !== 'undefined') {
+        taxSystem.currentYear = {
+            totalIncome: 0,
+            taxableIncome: 0,
+            totalTaxes: 0,
+            deductions: 0,
+            credits: 0,
+            capitalGains: 0
+        };
+    }
+    
+    // Initialize analytics system
+    if (typeof recordPerformanceData === 'function') {
+        recordPerformanceData();
+    }
 
     // Initialize bank system
     if (typeof bankSystem !== 'undefined') {
@@ -514,6 +682,12 @@ function startGame() {
     if (typeof updateAIDisplay === 'function') {
         updateAIDisplay();
     }
+    
+    // Attach profile button listeners after game starts
+    if (typeof attachProfileButtonListeners === 'function') {
+        setTimeout(attachProfileButtonListeners, 200);
+    }
+    
     addStory('Welcome to your financial journey! Your goal is to escape the rat race by building wealth through smart financial decisions.');
     
     // Introduce AI competition
@@ -527,15 +701,37 @@ function startGame() {
 // Display Updates
 function updateDisplay() {
     // Player info
-    document.getElementById('player-name-display').textContent = gameState.player.name;
-    document.getElementById('trait-display').textContent = traitEffects[gameState.player.trait].description;
+    const playerNameDisplay = document.getElementById('player-name-display');
+    if (playerNameDisplay) {
+        playerNameDisplay.textContent = gameState.player.name;
+    }
+    
+    // Character icon
+    const iconDisplay = document.getElementById('character-icon-display');
+    if (iconDisplay && typeof getCharacterIcon === 'function') {
+        iconDisplay.textContent = getCharacterIcon();
+    }
+    
+    // Update header turn/year
+    const turnCountHeader = document.getElementById('turn-count-header');
+    const yearDisplayHeader = document.getElementById('year-display-header');
+    if (turnCountHeader) turnCountHeader.textContent = gameState.turn;
+    if (yearDisplayHeader) yearDisplayHeader.textContent = gameState.year;
 
     // Financial status
-    document.getElementById('cash-display').textContent = formatMoney(gameState.player.cash);
-    document.getElementById('income-display').textContent = formatMoney(gameState.player.monthlyIncome);
-    document.getElementById('expenses-display').textContent = formatMoney(gameState.player.monthlyExpenses);
+    const cashDisplay = document.getElementById('cash-display');
+    if (cashDisplay) cashDisplay.textContent = formatMoney(gameState.player.cash);
+    
+    const incomeDisplay = document.getElementById('income-display');
+    if (incomeDisplay) incomeDisplay.textContent = formatMoney(gameState.player.monthlyIncome);
+    
+    const expensesDisplay = document.getElementById('expenses-display');
+    if (expensesDisplay) expensesDisplay.textContent = formatMoney(gameState.player.monthlyExpenses);
+    
     updateNetWorth();
-    document.getElementById('networth-display').textContent = formatMoney(gameState.player.netWorth);
+    
+    const networthDisplay = document.getElementById('networth-display');
+    if (networthDisplay) networthDisplay.textContent = formatMoney(gameState.player.netWorth);
     
     // Monthly stats (for dashboard quick view)
     const stats = gameState.player.monthlyStats;
@@ -559,7 +755,8 @@ function updateDisplay() {
     healthBar.className = 'health-fill ' + 
         (gameState.player.financialHealth >= 70 ? '' : 
          gameState.player.financialHealth >= 40 ? 'medium' : 'poor');
-    document.getElementById('health-score').textContent = Math.round(gameState.player.financialHealth) + '%';
+    const healthScore = document.getElementById('health-score');
+    if (healthScore) healthScore.textContent = Math.round(gameState.player.financialHealth) + '%';
     
     // Health factors are now in modals - no need to update here
 
@@ -568,8 +765,11 @@ function updateDisplay() {
     // Markets will update when modal is opened
 
     // Turn info
-    document.getElementById('turn-count').textContent = gameState.turn;
-    document.getElementById('year-display').textContent = gameState.year;
+    const turnCount = document.getElementById('turn-count');
+    if (turnCount) turnCount.textContent = gameState.turn;
+    
+    const yearDisplay = document.getElementById('year-display');
+    if (yearDisplay) yearDisplay.textContent = gameState.year;
 
     if (typeof scheduleSave === 'function') {
         scheduleSave();
@@ -805,35 +1005,12 @@ function handleAction(action) {
 }
 
 function handleWork() {
-    if (gameState.hasWorkedThisTurn) {
-        addStory('You\'ve already worked this turn. Wait for the next turn to work again.');
-        return;
+    // Work action now opens job market (salary is automatic each turn)
+    if (typeof openJobMarketModal === 'function') {
+        openJobMarketModal();
+    } else {
+        addStory('You can manage your career through the Job Market. Salary is paid automatically each turn.');
     }
-    
-    const income = gameState.player.monthlyIncome;
-    const trait = traitEffects[gameState.player.trait];
-    
-    let bonus = 0;
-    if (trait.businessIncome && Math.random() < 0.3) {
-        bonus = income * trait.businessIncome;
-        addStory(`Your entrepreneurial skills paid off! You earned a bonus of ${formatMoney(bonus)}.`);
-    }
-
-    const totalIncome = income + bonus;
-    gameState.player.cash += totalIncome;
-    gameState.player.monthlyStats.income += totalIncome;
-    gameState.hasWorkedThisTurn = true;
-    
-    // Log transaction
-    if (typeof logTransaction === 'function') {
-        logTransaction('income', `Work income${bonus > 0 ? ' + bonus' : ''}`, totalIncome, {
-            baseIncome: income,
-            bonus: bonus
-        });
-    }
-    
-    addStory(`You worked this month and earned ${formatMoney(totalIncome)}.`);
-    updateDisplay();
 }
 
 function handleLearn() {
@@ -878,6 +1055,15 @@ function handleSpend() {
 function openInvestModal() {
     const modal = document.getElementById('action-modal');
     const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('action-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
+    
     modalBody.innerHTML = `
         <p>Choose an investment strategy:</p>
         <div style="margin-top: 20px;">
@@ -896,40 +1082,237 @@ function openInvestModal() {
         </p>
     `;
     document.getElementById('modal-title').textContent = 'Invest';
-    modal.classList.add('active');
+    
+    // Show confirm and cancel buttons
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+    if (confirmBtn) {
+        confirmBtn.style.display = 'none'; // Hide confirm for quick invest buttons
+        confirmBtn.onclick = null;
+    }
+    if (cancelBtn) {
+        cancelBtn.style.display = 'block';
+        cancelBtn.onclick = closeModal;
+    }
 }
 
 function quickInvest(type, amount) {
-    if (gameState.player.cash >= amount) {
-        const market = gameState.markets[type];
-        if (market.length > 0) {
-            const asset = market[Math.floor(Math.random() * market.length)];
-            const quantity = amount / asset.price;
+    // Open interactive investment modal with adjustable amount/quantity
+    const modal = document.getElementById('action-modal');
+    const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Fix: Check if market exists and has assets
+    const market = gameState.markets[type];
+    if (!market || !Array.isArray(market) || market.length === 0) {
+        if (typeof showToast === 'function') {
+            showToast('No assets available in this market', 'error');
+        }
+        return;
+    }
+    
+    // Use modal manager - allow stacking
+    if (typeof openModal === 'function') {
+        openModal('action-modal', false, true);
+    } else {
+        modal.classList.add('active');
+    }
+    
+    // Select a random asset from the market
+    const asset = market[Math.floor(Math.random() * market.length)];
+    if (!asset) {
+        if (typeof showToast === 'function') {
+            showToast('Unable to select asset from market', 'error');
+        }
+        closeModal();
+        return;
+    }
+    
+    modalBody.innerHTML = `
+        <div style="background: var(--bg-dark); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <h3 style="margin-top: 0;">Quick Investment</h3>
+            <div class="stat-grid" style="margin-bottom: 15px;">
+                <div class="stat-item">
+                    <label>Market Type:</label>
+                    <span>${type.charAt(0).toUpperCase() + type.slice(1)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Selected Asset:</label>
+                    <span><strong>${asset.name} (${asset.symbol})</strong></span>
+                </div>
+                <div class="stat-item">
+                    <label>Current Price:</label>
+                    <span class="money">${formatMoney(asset.price)} ${asset.unit ? `per ${asset.unit}` : 'per share'}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Your Cash:</label>
+                    <span class="money">${formatMoney(gameState.player.cash)}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-form-group">
+            <label>Investment Mode:</label>
+            <select id="quick-invest-mode" style="width: 100%; padding: 10px; background: var(--bg-dark); border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-primary); margin-bottom: 10px;">
+                <option value="amount">Invest by Amount ($)</option>
+                <option value="quantity">Invest by Quantity (${asset.unit || 'shares'})</option>
+            </select>
+        </div>
+        
+        <div class="modal-form-group">
+            <label id="quick-invest-label">Investment Amount ($):</label>
+            <input type="number" id="quick-invest-value" min="1" step="100" value="${amount}" style="width: 100%;">
+        </div>
+        
+        <div id="quick-invest-preview" style="margin-top: 10px; padding: 15px; background: var(--bg-dark); border-radius: 8px; color: var(--text-secondary);"></div>
+    `;
+    
+    document.getElementById('modal-title').textContent = `Quick Investment: ${asset.name}`;
+    
+    const modeSelect = document.getElementById('quick-invest-mode');
+    const valueInput = document.getElementById('quick-invest-value');
+    const label = document.getElementById('quick-invest-label');
+    const preview = document.getElementById('quick-invest-preview');
+    
+    const updatePreview = () => {
+        const mode = modeSelect.value;
+        const value = parseFloat(valueInput.value) || 0;
+        let quantity, totalCost, canAfford;
+        
+        if (mode === 'amount') {
+            totalCost = value;
+            quantity = value / asset.price;
+            canAfford = gameState.player.cash >= value;
+        } else {
+            quantity = value;
+            totalCost = quantity * asset.price;
+            canAfford = gameState.player.cash >= totalCost;
+        }
+        
+        preview.innerHTML = `
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                <div>
+                    <strong>Quantity:</strong><br>
+                    <span style="font-size: 1.1em;">${quantity.toFixed(4)} ${asset.unit || 'shares'}</span>
+                </div>
+                <div>
+                    <strong>Total Cost:</strong><br>
+                    <span class="money" style="font-size: 1.1em; color: ${canAfford ? 'var(--text-primary)' : 'var(--danger-color)'};">
+                        ${formatMoney(totalCost)}
+                    </span>
+                </div>
+            </div>
+            ${!canAfford ? `
+                <div style="padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger-color); border-radius: 8px;">
+                    <strong>⚠️ Insufficient Funds</strong><br>
+                    You need ${formatMoney(totalCost - gameState.player.cash)} more to make this investment.
+                </div>
+            ` : `
+                <div style="padding: 10px; background: rgba(34, 197, 94, 0.1); border-left: 4px solid var(--success-color); border-radius: 8px;">
+                    <strong>✅ Investment Ready</strong><br>
+                    After purchase, you'll have ${formatMoney(gameState.player.cash - totalCost)} remaining.
+                </div>
+            `}
+        `;
+    };
+    
+    modeSelect.addEventListener('change', () => {
+        const mode = modeSelect.value;
+        if (mode === 'amount') {
+            label.textContent = 'Investment Amount ($):';
+            valueInput.min = '1';
+            valueInput.step = '100';
+            valueInput.value = amount;
+        } else {
+            label.textContent = `Quantity (${asset.unit || 'shares'}):`;
+            valueInput.min = '0.0001';
+            valueInput.step = '0.0001';
+            valueInput.value = (amount / asset.price).toFixed(4);
+        }
+        updatePreview();
+    });
+    
+    valueInput.addEventListener('input', updatePreview);
+    updatePreview();
+    
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+    if (confirmBtn) {
+        confirmBtn.style.display = 'block';
+        confirmBtn.textContent = 'Confirm Investment';
+        confirmBtn.onclick = () => {
+            const mode = modeSelect.value;
+            const value = parseFloat(valueInput.value) || 0;
             
-            gameState.player.cash -= amount;
+            if (value <= 0) {
+                if (typeof showToast === 'function') {
+                    showToast('Please enter a valid amount', 'error');
+                }
+                return;
+            }
+            
+            let finalAmount, finalQuantity;
+            if (mode === 'amount') {
+                finalAmount = value;
+                finalQuantity = finalAmount / asset.price;
+            } else {
+                finalQuantity = value;
+                finalAmount = finalQuantity * asset.price;
+            }
+            
+            if (gameState.player.cash < finalAmount) {
+                if (typeof showToast === 'function') {
+                    showToast('Insufficient funds', 'error');
+                }
+                return;
+            }
+            
+            gameState.player.cash -= finalAmount;
             const existing = gameState.player.portfolio[type].find(h => h.symbol === asset.symbol);
             if (existing) {
-                existing.quantity += quantity;
+                const totalCost = existing.avgPrice * existing.quantity + finalAmount;
+                existing.quantity += finalQuantity;
+                existing.avgPrice = totalCost / existing.quantity;
             } else {
                 gameState.player.portfolio[type].push({
                     symbol: asset.symbol,
-                    quantity: quantity,
+                    quantity: finalQuantity,
                     avgPrice: asset.price
                 });
             }
             
-            addStory(`You invested ${formatMoney(amount)} in ${asset.name}.`);
+            // Log asset purchase
+            if (typeof logAssetChange === 'function') {
+                logAssetChange(type, asset.symbol, finalQuantity, asset.price, 'buy');
+            }
+            
+            addStory(`You invested ${formatMoney(finalAmount)} in ${asset.name}.`);
             closeModal();
             updateDisplay();
-        }
-    } else {
-        addStory('You don\'t have enough cash for this investment.');
+        };
+    }
+    if (cancelBtn) {
+        cancelBtn.style.display = 'block';
+        cancelBtn.textContent = 'Cancel';
+        cancelBtn.onclick = closeModal;
     }
 }
+
+// Make function globally available
+window.quickInvest = quickInvest;
 
 function openSpendModal() {
     const modal = document.getElementById('action-modal');
     const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('action-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
+    
     modalBody.innerHTML = `
         <p>Choose what to spend on:</p>
         <div style="margin-top: 20px;">
@@ -948,7 +1331,6 @@ function openSpendModal() {
         </p>
     `;
     document.getElementById('modal-title').textContent = 'Spend Money';
-    modal.classList.add('active');
 }
 
 function spendMoney(type, amount) {
@@ -986,34 +1368,106 @@ function openBuyModal(marketType, symbol) {
     const asset = gameState.markets[marketType].find(a => a.symbol === symbol);
     const modal = document.getElementById('action-modal');
     const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager - allow stacking on top of markets modal
+    if (typeof openModal === 'function') {
+        if (!openModal('action-modal', false, true)) return; // allowStacking = true
+    } else {
+        modal.classList.add('active');
+    }
     
     modalBody.innerHTML = `
         <div class="modal-form-group">
             <label>Asset: ${asset.name} (${asset.symbol})</label>
-            <div style="margin: 10px 0;">Current Price: ${formatMoney(asset.price)}</div>
+            <div style="margin: 10px 0;">Current Price: ${formatMoney(asset.price)} ${asset.unit ? `per ${asset.unit}` : 'per share'}</div>
         </div>
         <div class="modal-form-group">
-            <label>Amount to Invest ($):</label>
-            <input type="number" id="buy-amount" min="100" step="100" value="1000">
+            <label>Buy By:</label>
+            <select id="buy-mode" style="width: 100%; padding: 10px; background: var(--bg-dark); border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-primary); margin-bottom: 10px;">
+                <option value="amount">Amount ($)</option>
+                <option value="quantity">Quantity (${asset.unit || 'shares'})</option>
+            </select>
+        </div>
+        <div class="modal-form-group">
+            <label id="buy-input-label">Amount to Invest ($):</label>
+            <input type="number" id="buy-input" min="100" step="100" value="1000">
         </div>
         <div id="buy-preview" style="margin-top: 10px; color: var(--text-secondary);"></div>
     `;
     
     document.getElementById('modal-title').textContent = `Buy ${asset.name}`;
-    modal.classList.add('active');
     
-    const amountInput = document.getElementById('buy-amount');
-    amountInput.addEventListener('input', () => {
-        const amount = parseFloat(amountInput.value) || 0;
-        const quantity = amount / asset.price;
-        document.getElementById('buy-preview').textContent = 
-            `You will buy ${quantity.toFixed(4)} ${asset.unit || 'shares'} for ${formatMoney(amount)}`;
+    // Show confirm and cancel buttons
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+    if (confirmBtn) {
+        confirmBtn.style.display = 'block';
+        confirmBtn.textContent = 'Confirm Purchase';
+    }
+    if (cancelBtn) {
+        cancelBtn.style.display = 'block';
+        cancelBtn.textContent = 'Cancel';
+        cancelBtn.onclick = closeModal;
+    }
+    
+    const modeSelect = document.getElementById('buy-mode');
+    const input = document.getElementById('buy-input');
+    const label = document.getElementById('buy-input-label');
+    
+    const updatePreview = () => {
+        const mode = modeSelect.value;
+        const value = parseFloat(input.value) || 0;
+        
+        if (mode === 'amount') {
+            const quantity = value / asset.price;
+            document.getElementById('buy-preview').textContent = 
+                `You will buy ${quantity.toFixed(4)} ${asset.unit || 'shares'} for ${formatMoney(value)}`;
+        } else {
+            const totalCost = value * asset.price;
+            document.getElementById('buy-preview').textContent = 
+                `You will buy ${value.toFixed(4)} ${asset.unit || 'shares'} for ${formatMoney(totalCost)}`;
+        }
+    };
+    
+    modeSelect.addEventListener('change', () => {
+        const mode = modeSelect.value;
+        if (mode === 'amount') {
+            label.textContent = 'Amount to Invest ($):';
+            input.min = '100';
+            input.step = '100';
+            input.value = '1000';
+        } else {
+            label.textContent = `Quantity (${asset.unit || 'shares'}):`;
+            input.min = '0.0001';
+            input.step = '0.0001';
+            input.value = '1';
+        }
+        updatePreview();
     });
     
-    document.getElementById('modal-confirm').onclick = () => {
-        const amount = parseFloat(amountInput.value) || 0;
-        buyAsset(marketType, symbol, amount);
-    };
+    input.addEventListener('input', updatePreview);
+    updatePreview();
+    
+    if (confirmBtn) {
+        confirmBtn.onclick = () => {
+            const mode = modeSelect.value;
+            const value = parseFloat(input.value) || 0;
+            
+            if (value <= 0) {
+                if (typeof showToast === 'function') {
+                    showToast('Please enter a valid amount', 'error');
+                }
+                return;
+            }
+            
+            if (mode === 'amount') {
+                buyAsset(marketType, symbol, value);
+            } else {
+                buyAssetByQuantity(marketType, symbol, value);
+            }
+        };
+    }
 }
 
 function buyAsset(marketType, symbol, amount) {
@@ -1024,7 +1478,12 @@ function buyAsset(marketType, symbol, amount) {
     }
     
     const asset = gameState.markets[marketType].find(a => a.symbol === symbol);
-    const quantity = amount / asset.price;
+    if (!asset) return;
+    
+    // Apply supply/demand pricing
+    const actualPrice = typeof calculatePriceWithSupplyDemand === 'function' ? 
+        calculatePriceWithSupplyDemand(marketType, symbol, asset.price) : asset.price;
+    const quantity = amount / actualPrice;
     
     gameState.player.cash -= amount;
     const existing = gameState.player.portfolio[marketType].find(h => h.symbol === symbol);
@@ -1036,13 +1495,72 @@ function buyAsset(marketType, symbol, amount) {
         gameState.player.portfolio[marketType].push({
             symbol: symbol,
             quantity: quantity,
-            avgPrice: asset.price
+            avgPrice: actualPrice
         });
+    }
+    
+    // Apply trading impact on supply/demand
+    if (typeof applyTradingImpact === 'function') {
+        applyTradingImpact(marketType, symbol, quantity, true);
+    }
+    
+    // Gain experience
+    if (typeof gainExperience === 'function') {
+        gainExperience('trading', Math.min(10, quantity / 10));
     }
     
     // Log asset purchase
     if (typeof logAssetChange === 'function') {
-        logAssetChange(marketType, symbol, quantity, asset.price, 'buy');
+        logAssetChange(marketType, symbol, quantity, actualPrice, 'buy');
+    }
+    
+    addStory(`You bought ${quantity.toFixed(4)} ${asset.unit || 'shares'} of ${asset.name} for ${formatMoney(amount)}.`);
+    closeModal();
+    updateDisplay();
+}
+
+function buyAssetByQuantity(marketType, symbol, quantity) {
+    const asset = gameState.markets[marketType].find(a => a.symbol === symbol);
+    if (!asset) return;
+    
+    // Apply supply/demand pricing
+    const actualPrice = typeof calculatePriceWithSupplyDemand === 'function' ? 
+        calculatePriceWithSupplyDemand(marketType, symbol, asset.price) : asset.price;
+    const amount = quantity * actualPrice;
+    
+    if (gameState.player.cash < amount) {
+        addStory('You don\'t have enough cash for this purchase.');
+        closeModal();
+        return;
+    }
+    
+    gameState.player.cash -= amount;
+    const existing = gameState.player.portfolio[marketType].find(h => h.symbol === symbol);
+    if (existing) {
+        const totalCost = existing.avgPrice * existing.quantity + amount;
+        existing.quantity += quantity;
+        existing.avgPrice = totalCost / existing.quantity;
+    } else {
+        gameState.player.portfolio[marketType].push({
+            symbol: symbol,
+            quantity: quantity,
+            avgPrice: actualPrice
+        });
+    }
+    
+    // Apply trading impact on supply/demand
+    if (typeof applyTradingImpact === 'function') {
+        applyTradingImpact(marketType, symbol, quantity, true);
+    }
+    
+    // Gain experience
+    if (typeof gainExperience === 'function') {
+        gainExperience('trading', Math.min(10, quantity / 10));
+    }
+    
+    // Log asset purchase
+    if (typeof logAssetChange === 'function') {
+        logAssetChange(marketType, symbol, quantity, actualPrice, 'buy');
     }
     
     addStory(`You bought ${quantity.toFixed(4)} ${asset.unit || 'shares'} of ${asset.name} for ${formatMoney(amount)}.`);
@@ -1063,6 +1581,14 @@ function openSellModal(marketType, symbol) {
     
     const modal = document.getElementById('action-modal');
     const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager - allow stacking on top of markets modal
+    if (typeof openModal === 'function') {
+        if (!openModal('action-modal', false, true)) return; // allowStacking = true
+    } else {
+        modal.classList.add('active');
+    }
     
     modalBody.innerHTML = `
         <div class="modal-form-group">
@@ -1082,7 +1608,19 @@ function openSellModal(marketType, symbol) {
     `;
     
     document.getElementById('modal-title').textContent = `Sell ${asset.name}`;
-    modal.classList.add('active');
+    
+    // Show confirm and cancel buttons
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+    if (confirmBtn) {
+        confirmBtn.style.display = 'block';
+        confirmBtn.textContent = 'Confirm Sale';
+    }
+    if (cancelBtn) {
+        cancelBtn.style.display = 'block';
+        cancelBtn.textContent = 'Cancel';
+        cancelBtn.onclick = closeModal;
+    }
     
     const quantityInput = document.getElementById('sell-quantity');
     quantityInput.addEventListener('input', () => {
@@ -1092,10 +1630,27 @@ function openSellModal(marketType, symbol) {
             `You will receive ${formatMoney(value)} for ${qty.toFixed(4)} ${asset.unit || 'shares'}`;
     });
     
-    document.getElementById('modal-confirm').onclick = () => {
-        const quantity = parseFloat(quantityInput.value) || 0;
-        sellAsset(marketType, symbol, quantity);
-    };
+    if (confirmBtn) {
+        confirmBtn.onclick = () => {
+            const quantity = parseFloat(quantityInput.value) || 0;
+            
+            if (quantity <= 0) {
+                if (typeof showToast === 'function') {
+                    showToast('Please enter a valid quantity', 'error');
+                }
+                return;
+            }
+            
+            if (quantity > holding.quantity) {
+                if (typeof showToast === 'function') {
+                    showToast('You don\'t own enough of this asset', 'error');
+                }
+                return;
+            }
+            
+            sellAsset(marketType, symbol, quantity);
+        };
+    }
 }
 
 function sellAsset(marketType, symbol, quantity) {
@@ -1148,6 +1703,14 @@ function openLoanModal() {
     
     const modal = document.getElementById('action-modal');
     const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('action-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
     
     // Generate random loan terms
     const termOptions = [12, 24, 36, 48, 60]; // months
@@ -1199,7 +1762,6 @@ function openLoanModal() {
     `;
     
     document.getElementById('modal-title').textContent = 'Take a Loan';
-    modal.classList.add('active');
     
     const loanTypeSelect = document.getElementById('loan-type');
     const amountInput = document.getElementById('loan-amount');
@@ -1326,6 +1888,14 @@ function takeLoan(type, amount, term, allowEarlyPayoff) {
 function openPropertyModal() {
     const modal = document.getElementById('action-modal');
     const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('action-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
     
     const properties = [
         { name: 'Small Apartment', price: 80000, income: 600, upkeep: 0.01, deterioration: 0.5 },
@@ -1338,8 +1908,8 @@ function openPropertyModal() {
         <p>Choose a property to purchase:</p>
         <div style="margin-top: 20px;">
             ${properties.map((prop, index) => `
-                <div style="background: var(--bg-dark); padding: 15px; margin-bottom: 10px; border-radius: 8px; border: 2px solid var(--border-color); cursor: pointer;" 
-                     onclick="selectProperty(${index})" id="prop-${index}">
+                <div style="background: var(--bg-dark); padding: 15px; margin-bottom: 10px; border-radius: 8px; border: 2px solid var(--border-color); cursor: pointer; transition: all 0.2s;" 
+                     onclick="openPropertyPurchaseModal(${index})" id="prop-${index}" onmouseover="this.style.borderColor='var(--secondary-color)'; this.style.transform='scale(1.02)'" onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform='scale(1)'">
                     <strong>${prop.name}</strong><br>
                     <div style="font-size: 0.9em; margin-top: 5px;">
                         Price: ${formatMoney(prop.price)}<br>
@@ -1354,25 +1924,103 @@ function openPropertyModal() {
     `;
     
     document.getElementById('modal-title').textContent = 'Buy Property';
-    modal.classList.add('active');
     
-    window.selectProperty = (index) => {
-        document.querySelectorAll('[id^="prop-"]').forEach(el => {
-            el.style.borderColor = 'var(--border-color)';
-        });
-        document.getElementById(`prop-${index}`).style.borderColor = 'var(--secondary-color)';
-        document.getElementById('selected-property').value = index;
-    };
+    // Store properties globally for purchase modal
+    window.propertiesList = properties;
     
-    document.getElementById('modal-confirm').onclick = () => {
-        const index = parseInt(document.getElementById('selected-property').value);
-        if (index >= 0 && index < properties.length) {
-            buyProperty(properties[index]);
-        } else {
-            addStory('Please select a property.');
-        }
-    };
+    // Hide confirm button - properties will open purchase modal
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+    if (confirmBtn) confirmBtn.style.display = 'none';
+    if (cancelBtn) {
+        cancelBtn.style.display = 'block';
+        cancelBtn.textContent = 'Close';
+        cancelBtn.onclick = closeModal;
+    }
 }
+
+// Open property purchase confirmation modal
+function openPropertyPurchaseModal(index) {
+    const properties = window.propertiesList || [];
+    if (index < 0 || index >= properties.length) return;
+    
+    const property = properties[index];
+    const modal = document.getElementById('action-modal');
+    const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager - allow stacking
+    if (typeof openModal === 'function') {
+        openModal('action-modal', false, true);
+    } else {
+        modal.classList.add('active');
+    }
+    
+    const canAfford = gameState.player.cash >= property.price;
+    const monthlyUpkeep = property.price * property.upkeep / 12;
+    const netMonthlyIncome = property.income - monthlyUpkeep;
+    
+    modalBody.innerHTML = `
+        <div style="background: var(--bg-dark); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <h3 style="margin-top: 0;">${property.name}</h3>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <label>Purchase Price:</label>
+                    <span class="money">${formatMoney(property.price)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Monthly Income:</label>
+                    <span class="money positive">${formatMoney(property.income)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Monthly Upkeep:</label>
+                    <span class="money negative">${formatMoney(monthlyUpkeep)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Net Monthly Income:</label>
+                    <span class="money ${netMonthlyIncome >= 0 ? 'positive' : 'negative'}">${formatMoney(netMonthlyIncome)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Your Cash:</label>
+                    <span class="money ${canAfford ? '' : 'negative'}">${formatMoney(gameState.player.cash)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>After Purchase:</label>
+                    <span class="money ${canAfford ? '' : 'negative'}">${formatMoney(gameState.player.cash - property.price)}</span>
+                </div>
+            </div>
+            ${!canAfford ? `
+                <div style="margin-top: 15px; padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger-color); border-radius: 8px;">
+                    <strong>⚠️ Insufficient Funds</strong><br>
+                    You need ${formatMoney(property.price - gameState.player.cash)} more to purchase this property.
+                </div>
+            ` : ''}
+        </div>
+    `;
+    
+    document.getElementById('modal-title').textContent = `Purchase: ${property.name}`;
+    
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+    if (confirmBtn) {
+        confirmBtn.style.display = 'block';
+        confirmBtn.textContent = 'Confirm Purchase';
+        confirmBtn.disabled = !canAfford;
+        confirmBtn.onclick = () => {
+            if (canAfford) {
+                buyProperty(property);
+            }
+        };
+    }
+    if (cancelBtn) {
+        cancelBtn.style.display = 'block';
+        cancelBtn.textContent = 'Cancel';
+        cancelBtn.onclick = closeModal;
+    }
+}
+
+// Make function globally available
+window.openPropertyPurchaseModal = openPropertyPurchaseModal;
 
 function buyProperty(property) {
     if (gameState.player.cash < property.price) {
@@ -1418,8 +2066,14 @@ function buyProperty(property) {
 }
 
 // Modal Functions
+// closeModal is now handled by modal-manager.js
 function closeModal() {
-    document.getElementById('action-modal').classList.remove('active');
+    if (typeof closeModalById === 'function') {
+        closeModalById('action-modal');
+    } else {
+        const modal = document.getElementById('action-modal');
+        if (modal) modal.classList.remove('active');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1434,7 +2088,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Calculate Taxes
+// Calculate Taxes (Legacy function - kept for compatibility)
 function calculateTaxes() {
     // Tax on income earned this turn (work income + property income)
     const taxableIncome = gameState.player.monthlyStats.income || 
@@ -1628,13 +2282,39 @@ function nextTurn() {
         gameState.year++;
     }
     
-    // Update markets first
+    // Update luck (fluctuates each turn)
+    if (typeof updateLuck === 'function') {
+        updateLuck();
+    }
+    
+    // Update supply and demand
+    if (typeof updateSupplyAndDemand === 'function') {
+        updateSupplyAndDemand();
+    }
+    
+    // Update markets with supply/demand pricing
     updateMarkets();
+    
+    // Apply supply/demand to market prices
+    if (typeof calculatePriceWithSupplyDemand === 'function') {
+        Object.keys(gameState.markets).forEach(marketType => {
+            gameState.markets[marketType].forEach(asset => {
+                const newPrice = calculatePriceWithSupplyDemand(marketType, asset.symbol, asset.basePrice);
+                asset.price = newPrice;
+            });
+        });
+    }
     
     // Reset monthly stats for this new turn
     gameState.player.monthlyStats = {
         income: 0,
+        incomeFromWork: 0,      // Salary/work income
+        incomeFromAssets: 0,    // Property, business, investment returns
         expenses: 0,
+        expensesNeeds: 0,      // Basic needs (housing, food, etc.)
+        expensesLifestyle: 0,   // Lifestyle expenses
+        expensesDebt: 0,        // Loan payments
+        expensesOther: 0,       // Other expenses (upkeep, etc.)
         taxes: 0,
         loanPayments: 0,
         propertyUpkeep: 0,
@@ -1642,7 +2322,28 @@ function nextTurn() {
         netChange: 0
     };
     
-    // Process property income (passive income)
+    // Process job/salary income (work income)
+    if (typeof jobMarketSystem !== 'undefined' && jobMarketSystem.playerJob) {
+        const salary = jobMarketSystem.playerJob.baseSalary;
+        gameState.player.cash += salary;
+        gameState.player.monthlyStats.income += salary;
+        gameState.player.monthlyStats.incomeFromWork += salary;
+        
+        // Process job turn (experience, promotions, etc.)
+        if (typeof processJobTurn === 'function') {
+            processJobTurn();
+        }
+        
+        // Log salary
+        if (salary > 0 && typeof logTransaction === 'function') {
+            logTransaction('income', `Salary from ${jobMarketSystem.playerJob.title}`, salary, {
+                incomeType: 'salary',
+                jobId: jobMarketSystem.playerJob.id
+            });
+        }
+    }
+    
+    // Process property income (passive income - assets)
     let propertyIncome = 0;
     gameState.player.properties.forEach(property => {
         if (property.monthlyIncome) {
@@ -1651,6 +2352,7 @@ function nextTurn() {
     });
     gameState.player.cash += propertyIncome;
     gameState.player.monthlyStats.income += propertyIncome;
+    gameState.player.monthlyStats.incomeFromAssets += propertyIncome;
     
     // Log property income
     if (propertyIncome > 0 && typeof logTransaction === 'function') {
@@ -1660,7 +2362,7 @@ function nextTurn() {
         });
     }
     
-    // Process business income
+    // Process business income (assets)
     if (typeof opportunitiesSystem !== 'undefined' && opportunitiesSystem.playerBusinesses) {
         let businessIncome = 0;
         opportunitiesSystem.playerBusinesses.forEach(business => {
@@ -1672,6 +2374,7 @@ function nextTurn() {
         });
         gameState.player.cash += businessIncome;
         gameState.player.monthlyStats.income += businessIncome;
+        gameState.player.monthlyStats.incomeFromAssets += businessIncome;
         
         // Log business income
         if (businessIncome > 0 && typeof logTransaction === 'function') {
@@ -1680,6 +2383,17 @@ function nextTurn() {
                 businessCount: opportunitiesSystem.playerBusinesses.length
             });
         }
+    }
+    
+    // Process quick investment products
+    if (typeof processInvestmentProducts === 'function') {
+        const productReturns = processInvestmentProducts();
+        gameState.player.monthlyStats.incomeFromAssets += productReturns;
+    }
+    
+    // Process skill learning
+    if (typeof processSkillLearning === 'function') {
+        processSkillLearning();
     }
     
     // Process auctions (decrease time left, check for wins)
@@ -1725,6 +2439,21 @@ function nextTurn() {
         }
     }
     
+    // Generate new jobs in job market
+    if (typeof generateAvailableJobs === 'function') {
+        generateAvailableJobs();
+    }
+    
+    // Process contact events
+    if (typeof processContactEvents === 'function') {
+        processContactEvents();
+    }
+    
+    // Process event effects (duration tracking)
+    if (typeof processEventEffects === 'function') {
+        processEventEffects();
+    }
+    
     // Process AI actions (before player actions affect markets)
     if (gameState.aiInitialized && typeof processAITrading === 'function') {
         processAITrading();
@@ -1738,26 +2467,82 @@ function nextTurn() {
         processRandomExpenses();
     }
     
-    // Process expenses
-    let totalExpenses = gameState.player.monthlyExpenses;
+    // Process expenses (separated by category)
+    let baseExpenses = gameState.player.monthlyExpenses;
+    let needsExpenses = 0;
+    let lifestyleExpenses = 0;
     
-    // Apply bad habit effects
+    // Calculate needs expenses (from needs system)
+    if (gameState.needsInitialized && gameState.player.needs) {
+        gameState.player.needs.forEach(need => {
+            if (need.satisfied && need.cost) {
+                needsExpenses += need.cost;
+            }
+        });
+    }
+    
+    // Lifestyle expenses (base expenses minus needs)
+    lifestyleExpenses = baseExpenses - needsExpenses;
+    if (lifestyleExpenses < 0) lifestyleExpenses = 0;
+    
+    // Apply bad habit effects (adds to lifestyle expenses)
     gameState.player.badHabits.forEach(habit => {
         if (habit.effect.expenseIncrease) {
-            totalExpenses += gameState.player.monthlyExpenses * habit.effect.expenseIncrease;
+            lifestyleExpenses += gameState.player.monthlyExpenses * habit.effect.expenseIncrease;
         }
         if (habit.effect.monthlyPayment) {
-            totalExpenses += habit.effect.monthlyPayment;
+            gameState.player.monthlyStats.expensesDebt += habit.effect.monthlyPayment;
         }
     });
     
+    const totalExpenses = needsExpenses + lifestyleExpenses + gameState.player.monthlyStats.expensesDebt;
+    
     gameState.player.cash -= totalExpenses;
     gameState.player.monthlyStats.expenses = totalExpenses;
+    gameState.player.monthlyStats.expensesNeeds = needsExpenses;
+    gameState.player.monthlyStats.expensesLifestyle = lifestyleExpenses;
     
-    // Process taxes (on income earned this turn)
-    const taxes = calculateTaxes();
+    // Process taxes (enhanced tax system)
+    let taxes = 0;
+    if (typeof processMonthlyTaxes === 'function') {
+        taxes = processMonthlyTaxes();
+    } else {
+        taxes = calculateTaxes(); // Fallback to old system
+    }
     gameState.player.cash -= taxes;
     gameState.player.monthlyStats.taxes = taxes;
+    
+    // Annual tax reconciliation (at end of year)
+    if (gameState.turn % 12 === 0 && typeof reconcileAnnualTaxes === 'function') {
+        reconcileAnnualTaxes();
+    }
+    
+    // Process insurance premiums
+    if (typeof processInsurancePremiums === 'function') {
+        const insurancePremiums = processInsurancePremiums();
+        gameState.player.monthlyStats.expenses += insurancePremiums;
+        gameState.player.monthlyStats.expensesOther += insurancePremiums;
+    }
+    
+    // Process family expenses
+    if (typeof processFamilyTurn === 'function') {
+        processFamilyTurn();
+    }
+    
+    // Process active scenario
+    if (typeof processActiveScenario === 'function') {
+        processActiveScenario();
+    }
+    
+    // Record analytics data
+    if (typeof recordPerformanceData === 'function') {
+        recordPerformanceData();
+    }
+    
+    // Update goals progress
+    if (typeof updateGoalsProgress === 'function') {
+        updateGoalsProgress();
+    }
     
     // Log tax payment
     if (taxes > 0 && typeof logTransaction === 'function') {
@@ -1770,14 +2555,21 @@ function nextTurn() {
     const loanPayments = processLoans();
     gameState.player.monthlyStats.loanPayments = loanPayments;
     
-    // Process property upkeep
+    // Process property deterioration
+    if (typeof processPropertyDeterioration === 'function') {
+        processPropertyDeterioration();
+    }
+    
+    // Process property upkeep (other expenses)
     const propertyUpkeep = processPropertyUpkeep();
     gameState.player.monthlyStats.propertyUpkeep = propertyUpkeep;
+    gameState.player.monthlyStats.expensesOther += propertyUpkeep;
     
-    // Calculate investment returns (bonds interest, dividends, etc.)
+    // Calculate investment returns (bonds interest, dividends, etc.) - from portfolio
     const investmentReturns = calculateInvestmentReturns();
     gameState.player.cash += investmentReturns;
     gameState.player.monthlyStats.investmentReturns = investmentReturns;
+    gameState.player.monthlyStats.incomeFromAssets += investmentReturns;
     
     // Log investment returns
     if (investmentReturns > 0 && typeof logTransaction === 'function') {
@@ -1798,9 +2590,61 @@ function nextTurn() {
     // Reset work flag for new turn
     gameState.hasWorkedThisTurn = false;
     
-    // Random event
-    if (Math.random() < 0.4) {
-        triggerRandomEvent();
+    // Generate and process random events
+    if (typeof generateRandomEvent === 'function') {
+        if (Math.random() < 0.4) {
+            const event = generateRandomEvent();
+            if (event) {
+                event.turn = gameState.turn;
+                expandedEvents.events.push(event);
+                applyEventEffect(event);
+                triggerRandomEvent(event);
+            }
+        }
+    } else {
+        // Fallback to old system
+        if (Math.random() < 0.4) {
+            triggerRandomEvent();
+        }
+    }
+    
+    // Generate offers
+    if (typeof generateOffer === 'function') {
+        const offer = generateOffer();
+        if (offer && typeof showToast === 'function') {
+            showToast(`💼 New offer available: ${offer.title}`, 'info', 4000);
+        }
+    }
+    
+    // Generate incidents
+    if (typeof generateIncident === 'function') {
+        const incident = generateIncident();
+        if (incident) {
+            applyEventEffect(incident);
+            if (typeof showToast === 'function') {
+                showToast(`⚠️ ${incident.title}`, 'warning', 5000);
+            }
+        }
+    }
+    
+    // Process active incidents
+    if (typeof processActiveIncidents === 'function') {
+        processActiveIncidents();
+    }
+    
+    // Process active offers (remove expired)
+    if (typeof processActiveOffers === 'function') {
+        processActiveOffers();
+    }
+    
+    // Check achievements
+    if (typeof checkAchievements === 'function') {
+        checkAchievements();
+    }
+    
+    // Check milestones
+    if (typeof checkMilestones === 'function') {
+        checkMilestones();
     }
     
     // Check for new bad habits
@@ -1815,9 +2659,50 @@ function nextTurn() {
         }
     }
     
-    // Check win condition
-    if (gameState.player.netWorth >= 1000000 && gameState.player.financialHealth >= 80) {
-        addStory('🎉 CONGRATULATIONS! You\'ve escaped the rat race! You\'ve built wealth and achieved financial freedom!');
+    // Check win condition (EXTREME difficulty - designed for weeks/months of gameplay)
+    const victoryNetWorth = 50000000; // $50 million (extremely difficult)
+    const victoryHealth = 95; // Near-perfect financial health
+    const minProperties = 10; // Must own at least 10 properties
+    const minBusinesses = 5; // Must own at least 5 businesses
+    const minSkills = 25; // Must have learned at least 25 skills
+    const minTurnCount = 200; // Must have played at least 200 turns (16+ years in-game)
+    const minCreditScore = 800; // Excellent credit score
+    const minPassiveIncome = 500000; // $500k monthly passive income
+    
+    // Calculate passive income (properties + businesses + investments)
+    const victoryPropertyIncome = gameState.player.properties.reduce((sum, prop) => sum + (prop.monthlyIncome || 0), 0);
+    const businessIncome = (typeof opportunitiesSystem !== 'undefined' && opportunitiesSystem.playerBusinesses) ?
+        opportunitiesSystem.playerBusinesses.reduce((sum, biz) => sum + (biz.monthlyIncome || 0), 0) : 0;
+    const investmentIncome = gameState.player.monthlyStats.investmentReturns || 0;
+    const totalPassiveIncome = victoryPropertyIncome + businessIncome + investmentIncome;
+    
+    // Count learned skills
+    let learnedSkillsCount = 0;
+    if (typeof skillTreeSystem !== 'undefined') {
+        Object.keys(skillTreeSystem.skills).forEach(skillId => {
+            if (skillTreeSystem.skills[skillId].learned) {
+                learnedSkillsCount++;
+            }
+        });
+    }
+    
+    // Check all victory conditions
+    const hasNetWorth = gameState.player.netWorth >= victoryNetWorth;
+    const hasHealth = gameState.player.financialHealth >= victoryHealth;
+    const hasProperties = gameState.player.properties.length >= minProperties;
+    const hasBusinesses = (typeof opportunitiesSystem !== 'undefined' && opportunitiesSystem.playerBusinesses) ?
+        opportunitiesSystem.playerBusinesses.length >= minBusinesses : false;
+    const hasSkills = learnedSkillsCount >= minSkills;
+    const hasTurns = gameState.turn >= minTurnCount;
+    const hasCredit = (typeof bankSystem !== 'undefined' && bankSystem.creditScore) ?
+        bankSystem.creditScore >= minCreditScore : false;
+    const hasPassiveIncome = totalPassiveIncome >= minPassiveIncome;
+    
+    // Only show victory if ALL conditions are met
+    if (hasNetWorth && hasHealth && hasProperties && hasBusinesses && hasSkills && hasTurns && hasCredit && hasPassiveIncome) {
+        if (typeof showVictoryModal === 'function') {
+            showVictoryModal();
+        }
     }
     
     // Update credit score each turn
@@ -1832,11 +2717,27 @@ function nextTurn() {
     if (typeof updateAIDisplay === 'function') {
         updateAIDisplay();
     }
+    
+    // Active effects are now shown in modal, no need to update dashboard
+    
+    // Update badges for new items/events
+    if (typeof updateBadges === 'function') {
+        updateBadges();
+    }
+    
     addStory(storyTemplates[Math.floor(Math.random() * storyTemplates.length)]);
+    
+    // Show turn summary modal
+    if (typeof displayTurnSummary === 'function') {
+        // Delay slightly to ensure all updates are complete
+        setTimeout(() => {
+            displayTurnSummary();
+        }, 500);
+    }
 }
 
-function triggerRandomEvent() {
-    const event = randomEvents[Math.floor(Math.random() * randomEvents.length)];
+function triggerRandomEvent(customEvent = null) {
+    const event = customEvent || randomEvents[Math.floor(Math.random() * randomEvents.length)];
     gameState.currentEvent = event;
     
     // Log event
@@ -1845,12 +2746,19 @@ function triggerRandomEvent() {
     }
     
     const eventsDisplay = document.getElementById('events-display');
+    if (!eventsDisplay) return; // Fix: Check if element exists
+    
     const eventClass = event.type === 'positive' ? 'positive' : event.type === 'negative' ? 'negative' : 'neutral';
+    const eventId = `event_${Date.now()}`;
+    
+    // Escape event for onclick
+    const eventJson = JSON.stringify(event).replace(/'/g, "\\'").replace(/"/g, '&quot;');
     
     eventsDisplay.innerHTML = `
-        <div class="event-item ${eventClass}">
+        <div class="event-item ${eventClass}" onclick="showEventDetailsFromString('${eventJson}')" style="cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
             <strong>${event.title}</strong>
             <p>${event.description}</p>
+            <div style="font-size: 0.85em; color: var(--text-secondary); margin-top: 5px;">Click for details →</div>
         </div>
     `;
     
@@ -1864,6 +2772,54 @@ function triggerRandomEvent() {
     if (event.effect.cashLoss) {
         gameState.player.cash = Math.max(0, gameState.player.cash - event.effect.cashLoss);
     }
+    // Register event with tracking system if available
+    if (typeof registerEvent === 'function' && event.effect) {
+        const effects = [];
+        const eventId = `event_${Date.now()}`;
+        
+        // Convert event effects to tracking system format
+        if (event.effect.marketBoost) {
+            effects.push(createEventEffect(
+                eventId,
+                effectTypes.MARKET_PRICE,
+                event.effect.assetType || 'stocks',
+                event.effect.marketBoost,
+                event.effect.duration || 3,
+                true,
+                true,
+                `${event.title}: Market prices increased`
+            ));
+        }
+        if (event.effect.marketDrop) {
+            effects.push(createEventEffect(
+                eventId,
+                effectTypes.MARKET_PRICE,
+                event.effect.assetType || 'stocks',
+                event.effect.marketDrop,
+                event.effect.duration || 3,
+                false,
+                true,
+                `${event.title}: Market prices decreased`
+            ));
+        }
+        if (event.effect.investmentBonus) {
+            effects.push(createEventEffect(
+                eventId,
+                effectTypes.SKILL_BOOST,
+                'investing',
+                event.effect.investmentBonus * 10,
+                event.effect.duration || 1,
+                true,
+                true,
+                `${event.title}: Investment skills improved`
+            ));
+        }
+        
+        if (effects.length > 0) {
+            registerEvent(eventId, event.title, effects, true);
+        }
+    }
+    
     if (event.effect.marketBoost) {
         gameState.markets[event.effect.assetType].forEach(asset => {
             asset.price *= (1 + event.effect.marketBoost);
@@ -1884,6 +2840,186 @@ function triggerRandomEvent() {
     }
     
     addStory(`Event: ${event.title} - ${event.description}`);
+}
+
+// Make functions globally available
+window.showHoldingDetails = showHoldingDetails;
+window.showEventDetails = showEventDetails;
+window.showEventDetailsFromString = showEventDetailsFromString;
+
+// Show holding details modal
+function showHoldingDetails(marketType, symbol) {
+    const holding = gameState.player.portfolio[marketType]?.find(h => h.symbol === symbol);
+    if (!holding) {
+        if (typeof showToast === 'function') {
+            showToast('Holding not found', 'error');
+        }
+        return;
+    }
+    
+    const asset = gameState.markets[marketType]?.find(a => a.symbol === symbol);
+    if (!asset) {
+        if (typeof showToast === 'function') {
+            showToast('Asset not found', 'error');
+        }
+        return;
+    }
+    
+    const modal = document.getElementById('action-modal');
+    const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager - allow stacking
+    if (typeof openModal === 'function') {
+        openModal('action-modal', false, true);
+    } else {
+        modal.classList.add('active');
+    }
+    
+    const currentValue = asset.price * holding.quantity;
+    const costBasis = holding.avgPrice * holding.quantity;
+    const profit = currentValue - costBasis;
+    const profitPercent = ((profit / costBasis) * 100) || 0;
+    const profitClass = profit >= 0 ? 'positive' : 'negative';
+    
+    // Get price history
+    const history = gameState.marketHistory[marketType]?.[symbol] || [];
+    const priceChange = history.length > 1 ? 
+        ((asset.price - history[history.length - 2].price) / history[history.length - 2].price * 100) : 0;
+    
+    modalBody.innerHTML = `
+        <div style="background: var(--bg-dark); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <h3 style="margin-top: 0;">${asset.name} (${symbol})</h3>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <label>Quantity:</label>
+                    <span>${holding.quantity.toFixed(4)} ${asset.unit || 'shares'}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Average Price:</label>
+                    <span class="money">${formatMoney(holding.avgPrice)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Current Price:</label>
+                    <span class="money">${formatMoney(asset.price)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Price Change:</label>
+                    <span style="color: ${priceChange >= 0 ? 'var(--success-color)' : 'var(--danger-color)'};">
+                        ${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%
+                    </span>
+                </div>
+                <div class="stat-item">
+                    <label>Cost Basis:</label>
+                    <span class="money">${formatMoney(costBasis)}</span>
+                </div>
+                <div class="stat-item">
+                    <label>Current Value:</label>
+                    <span class="money">${formatMoney(currentValue)}</span>
+                </div>
+                <div class="stat-item" style="border-top: 2px solid var(--border-color); padding-top: 10px;">
+                    <label><strong>Profit/Loss:</strong></label>
+                    <span class="money" style="font-size: 1.2em; color: var(--${profitClass === 'positive' ? 'success' : 'danger'}-color);">
+                        ${profit >= 0 ? '+' : ''}${formatMoney(profit)} (${profitPercent.toFixed(2)}%)
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button class="btn-primary" onclick="openBuyModal('${marketType}', '${symbol}'); closeModal();" style="flex: 1;">
+                Buy More
+            </button>
+            <button class="btn-secondary" onclick="openSellModal('${marketType}', '${symbol}'); closeModal();" style="flex: 1;">
+                Sell
+            </button>
+        </div>
+    `;
+    
+    document.getElementById('modal-title').textContent = `Holding Details: ${asset.name}`;
+    document.getElementById('modal-confirm').style.display = 'none';
+    document.getElementById('modal-cancel').textContent = 'Close';
+    document.getElementById('modal-cancel').onclick = closeModal;
+}
+
+// Show event details from string (for onclick)
+function showEventDetailsFromString(eventJson) {
+    try {
+        const event = JSON.parse(eventJson.replace(/&quot;/g, '"'));
+        showEventDetails(event);
+    } catch (e) {
+        console.error('Error parsing event:', e);
+    }
+}
+
+// Show event details modal
+function showEventDetails(event) {
+    const modal = document.getElementById('action-modal');
+    const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager - allow opening on top of other modals
+    if (typeof openModal === 'function') {
+        openModal('action-modal', false, true); // Allow stacking
+    } else {
+        modal.classList.add('active');
+    }
+    
+    const effectDetails = [];
+    if (event.effect) {
+        Object.keys(event.effect).forEach(key => {
+            if (key !== 'assetType' && key !== 'duration') {
+                const value = event.effect[key];
+                if (typeof value === 'number') {
+                    if (key.includes('Increase') || key.includes('Bonus')) {
+                        effectDetails.push(`${key.replace(/([A-Z])/g, ' $1').trim()}: +${(value * 100).toFixed(0)}%`);
+                    } else if (key.includes('Decrease') || key.includes('Loss') || key.includes('Drop')) {
+                        effectDetails.push(`${key.replace(/([A-Z])/g, ' $1').trim()}: -${(value * 100).toFixed(0)}%`);
+                    } else if (key.includes('cash') || key.includes('Cash')) {
+                        effectDetails.push(`${key.replace(/([A-Z])/g, ' $1').trim()}: ${formatMoney(value)}`);
+                    } else {
+                        effectDetails.push(`${key.replace(/([A-Z])/g, ' $1').trim()}: ${(value * 100).toFixed(0)}%`);
+                    }
+                } else if (typeof value === 'object' && value !== null) {
+                    // Handle skill boost objects
+                    Object.keys(value).forEach(skill => {
+                        effectDetails.push(`${skill}: +${value[skill]}`);
+                    });
+                } else {
+                    effectDetails.push(`${key.replace(/([A-Z])/g, ' $1').trim()}: ${value}`);
+                }
+            }
+        });
+    }
+    
+    modalBody.innerHTML = `
+        <div style="background: var(--bg-dark); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <h3 style="margin-top: 0; color: ${event.type === 'positive' ? 'var(--success-color)' : event.type === 'negative' ? 'var(--danger-color)' : 'var(--text-primary)'};">
+                ${event.title}
+            </h3>
+            <p style="font-size: 1.1em; margin-bottom: 15px;">${event.description}</p>
+            <div style="margin-top: 15px;">
+                <strong>Event Type:</strong> ${event.type.charAt(0).toUpperCase() + event.type.slice(1)}<br>
+                ${event.rarity ? `<strong>Rarity:</strong> ${event.rarity.charAt(0).toUpperCase() + event.rarity.slice(1)}<br>` : ''}
+                ${event.duration ? `<strong>Duration:</strong> ${event.duration} turn(s)<br>` : ''}
+            </div>
+        </div>
+        ${effectDetails.length > 0 ? `
+            <div style="background: var(--bg-dark); padding: 20px; border-radius: 10px;">
+                <h4 style="margin-top: 0;">Effects:</h4>
+                <ul style="margin: 0; padding-left: 20px;">
+                    ${effectDetails.map(effect => `<li>${effect}</li>`).join('')}
+                </ul>
+            </div>
+        ` : ''}
+    `;
+    
+    document.getElementById('modal-title').textContent = 'Event Details';
+    document.getElementById('modal-confirm').textContent = 'Close';
+    document.getElementById('modal-confirm').style.display = 'block';
+    document.getElementById('modal-cancel').style.display = 'none';
+    document.getElementById('modal-confirm').onclick = () => {
+        closeModal();
+    };
 }
 
 function addStory(text) {

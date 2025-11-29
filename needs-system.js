@@ -295,6 +295,8 @@ function updateNeedsDisplay() {
 
     // Needs List
     const needsList = document.getElementById('needs-list');
+    if (!needsList || !gameState.player.needs) return; // Fix: Check if element exists
+    
     needsList.innerHTML = gameState.player.needs.map(need => {
         const statusClass = need.satisfied ? 'positive' : (need.unmetTurns > need.maxUnmetTurns ? 'negative' : '');
         const statusIcon = need.satisfied ? '✅' : (need.unmetTurns > need.maxUnmetTurns ? '🔴' : '⚠️');
@@ -314,6 +316,8 @@ function updateNeedsDisplay() {
 
     // Wants List
     const wantsList = document.getElementById('wants-list');
+    if (!wantsList || !gameState.player.wants) return; // Fix: Check if element exists
+    
     wantsList.innerHTML = gameState.player.wants.map(want => {
         const statusIcon = want.satisfied ? '✅' : '💭';
         const unmetText = !want.satisfied && want.unmetTurns > 5 ? 
@@ -363,6 +367,14 @@ function buyCar() {
     
     const modal = document.getElementById('action-modal');
     const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('action-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
     
     modalBody.innerHTML = `
         <p>Choose a car to purchase:</p>
@@ -382,7 +394,6 @@ function buyCar() {
     `;
     
     document.getElementById('modal-title').textContent = 'Buy Car';
-    modal.classList.add('active');
     
     window.selectCar = (index) => {
         document.querySelectorAll('[id^="car-"]').forEach(el => {

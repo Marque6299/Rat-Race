@@ -1,21 +1,26 @@
 // Dashboard Modal Functions
-function closeModalById(modalId) {
-    document.getElementById(modalId).classList.remove('active');
-}
+// closeModalById is now handled by modal-manager.js
+// This function is kept for backwards compatibility but delegates to modal manager
+window.closeModalById = window.closeModalById || function(modalId, silent = false) {
+    // Fallback if modal manager not loaded
+    const modal = document.getElementById(modalId);
+    if (modal) modal.classList.remove('active');
+};
 
 function openPortfolioModal() {
     const modal = document.getElementById('portfolio-modal');
     const content = document.getElementById('portfolio-modal-content');
     
-    if (!modal || !content) return;
+    if (!modal || !content) {
+        console.warn('Portfolio modal or content not found');
+        return;
+    }
     
-    // Add logs button
-    const existingButton = document.getElementById('portfolio-logs-btn');
-    if (!existingButton) {
-        const buttonContainer = document.createElement('div');
-        buttonContainer.style.marginTop = '20px';
-        buttonContainer.innerHTML = '<button class="btn-primary" onclick="openLogsModal(); closeModalById(\'portfolio-modal\');" style="width: 100%;">View Financial Logs</button>';
-        content.appendChild(buttonContainer);
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('portfolio-modal')) return;
+    } else {
+        modal.classList.add('active');
     }
     
     // Get portfolio values
@@ -44,17 +49,28 @@ function openPortfolioModal() {
                     
                     holdingsHtml += `
                         <div style="background: var(--bg-dark); padding: 10px; margin-top: 8px; border-radius: 6px;">
-                            <div style="display: flex; justify-content: space-between;">
-                                <div>
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div style="flex: 1;">
                                     <strong>${asset.name} (${holding.symbol})</strong><br>
                                     <span style="font-size: 0.85em; color: var(--text-secondary);">
                                         ${holding.quantity.toFixed(4)} ${asset.unit || 'shares'}
                                     </span>
+                                    <div style="font-size: 0.8em; color: var(--text-secondary); margin-top: 3px;">
+                                        Avg Price: ${formatMoney(holding.avgPrice)}
+                                    </div>
                                 </div>
-                                <div style="text-align: right;">
+                                <div style="text-align: right; margin-left: 10px;">
                                     <div>${formatMoney(currentValue)}</div>
                                     <div style="font-size: 0.85em; color: var(--${profitClass === 'positive' ? 'success' : 'danger'}-color);">
                                         ${profit >= 0 ? '+' : ''}${formatMoney(profit)} (${profitPercent.toFixed(2)}%)
+                                    </div>
+                                    <div style="display: flex; gap: 5px; margin-top: 5px;">
+                                        <button class="market-btn" onclick="openSellModal('${marketType}', '${holding.symbol}'); closeModalById('portfolio-modal');" style="flex: 1; font-size: 0.85em;">
+                                            Sell
+                                        </button>
+                                        <button class="market-btn" onclick="showHoldingDetails('${marketType}', '${holding.symbol}')" style="flex: 1; font-size: 0.85em;">
+                                            Details
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -96,38 +112,62 @@ function openPortfolioModal() {
             </div>
         </div>
         ${holdingsHtml}
-        <div style="margin-top: 20px;">
-            <button class="btn-primary" onclick="openLogsModal(); closeModalById('portfolio-modal');" style="width: 100%;">View Financial Logs</button>
+        <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <button class="btn-primary" onclick="openMarketsModal(); closeModalById('portfolio-modal');" style="width: 100%;">
+                📊 Trading Markets
+            </button>
+            <button class="btn-secondary" onclick="openLogsModal();" style="width: 100%;">
+                📋 Financial Logs
+            </button>
         </div>
     `;
     
-    modal.classList.add('active');
+    // Modal already opened by modal manager if available
+    if (typeof openModal !== 'function') {
+        modal.classList.add('active');
+    }
 }
 
 function openLoansModal() {
     const modal = document.getElementById('loans-modal');
     const content = document.getElementById('loans-modal-content');
     
-    if (!modal || !content) return;
+    if (!modal || !content) {
+        console.warn('Loans modal or content not found');
+        return;
+    }
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('loans-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
     
     if (gameState.player.loans.length === 0) {
         content.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-secondary);">No active loans</div>';
     } else {
-        content.innerHTML = gameState.player.loans.map(loan => {
+        content.innerHTML = gameState.player.loans.map((loan, index) => {
             const monthlyInterest = loan.principal * loan.interestRate / 12;
             const minPayment = Math.max(loan.principal * 0.02, monthlyInterest + 100);
+            const canPayEarly = loan.terms?.allowEarlyPayoff !== false;
+            const loanId = `loan_${index}_${loan.name.replace(/\s+/g, '_')}`;
+            
             return `
                 <div style="background: var(--bg-dark); padding: 15px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid var(--warning-color);">
                     <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
                         <div>
                             <strong>${loan.name}</strong>
+                            <div style="font-size: 0.85em; color: var(--text-secondary); margin-top: 3px;">
+                                Term: ${loan.terms?.duration || 'N/A'} months
+                            </div>
                         </div>
                         <div style="text-align: right;">
                             <div style="font-size: 1.2em; font-weight: 600; color: var(--warning-color);">${formatMoney(loan.principal)}</div>
                             <div style="font-size: 0.85em; color: var(--text-secondary);">Remaining</div>
                         </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9em;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 0.9em; margin-bottom: 10px;">
                         <div>
                             <div style="color: var(--text-secondary);">Interest Rate</div>
                             <div>${(loan.interestRate * 100).toFixed(2)}% APR</div>
@@ -136,13 +176,27 @@ function openLoansModal() {
                             <div style="color: var(--text-secondary);">Monthly Payment</div>
                             <div>~${formatMoney(minPayment)}</div>
                         </div>
+                        <div>
+                            <div style="color: var(--text-secondary);">Early Payoff</div>
+                            <div>${canPayEarly ? '✅ Allowed' : '❌ Not Allowed'}</div>
+                        </div>
                     </div>
+                    ${canPayEarly ? `
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+                            <button class="btn-primary" onclick="openLoanPaymentModal('${loan.name}', ${loan.principal}, ${index})" style="width: 100%;">
+                                💰 Pay Off Loan
+                            </button>
+                        </div>
+                    ` : ''}
                 </div>
             `;
         }).join('');
     }
     
-    modal.classList.add('active');
+    // Modal already opened by modal manager if available
+    if (typeof openModal !== 'function') {
+        modal.classList.add('active');
+    }
 }
 
 function openPropertiesModal() {
@@ -150,6 +204,11 @@ function openPropertiesModal() {
     const content = document.getElementById('properties-modal-content');
     
     if (!modal || !content) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('properties-modal')) return;
+    }
     
     if (gameState.player.properties.length === 0) {
         content.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-secondary);">No properties owned</div>';
@@ -185,7 +244,10 @@ function openPropertiesModal() {
         }).join('');
     }
     
-    modal.classList.add('active');
+    // Modal already opened by modal manager if available
+    if (typeof openModal !== 'function') {
+        modal.classList.add('active');
+    }
 }
 
 function openNeedsModal() {
@@ -193,6 +255,11 @@ function openNeedsModal() {
     const content = document.getElementById('needs-modal-content');
     
     if (!modal || !content) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('needs-modal')) return;
+    }
     
     if (typeof updateNeedsDisplay === 'function') {
         // Get needs and wants HTML
@@ -245,7 +312,10 @@ function openNeedsModal() {
         content.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-secondary);">Needs system not initialized</div>';
     }
     
-    modal.classList.add('active');
+    // Modal already opened by modal manager if available
+    if (typeof openModal !== 'function') {
+        modal.classList.add('active');
+    }
 }
 
 function openHabitsModal() {
@@ -253,6 +323,11 @@ function openHabitsModal() {
     const content = document.getElementById('habits-modal-content');
     
     if (!modal || !content) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('habits-modal')) return;
+    }
     
     if (gameState.player.badHabits.length === 0) {
         content.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--success-color);">✅ No bad habits! You\'re doing great!</div>';
@@ -265,7 +340,10 @@ function openHabitsModal() {
         ).join('');
     }
     
-    modal.classList.add('active');
+    // Modal already opened by modal manager if available
+    if (typeof openModal !== 'function') {
+        modal.classList.add('active');
+    }
 }
 
 function openMonthlyDetailsModal() {
@@ -273,6 +351,11 @@ function openMonthlyDetailsModal() {
     const content = document.getElementById('monthly-details-content');
     
     if (!modal || !content) return;
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('monthly-details-modal')) return;
+    }
     
     const stats = gameState.player.monthlyStats;
     
@@ -311,6 +394,9 @@ function openMonthlyDetailsModal() {
         </div>
     `;
     
-    modal.classList.add('active');
+    // Modal already opened by modal manager if available
+    if (typeof openModal !== 'function') {
+        modal.classList.add('active');
+    }
 }
 

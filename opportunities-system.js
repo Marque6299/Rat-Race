@@ -132,25 +132,54 @@ function generateAuctions() {
 
 // Generate Property Market
 function generatePropertyMarket() {
-    const propertyTypes = [
-        { name: 'Foreclosure Deal', type: 'House', price: 150000, income: 1000, discount: 0.25 },
-        { name: 'Distressed Property', type: 'Apartment', price: 60000, income: 500, discount: 0.3 },
-        { name: 'Investment Property', type: 'Rental', price: 120000, income: 1200, discount: 0.15 },
-        { name: 'Commercial Opportunity', type: 'Commercial', price: 400000, income: 3500, discount: 0.2 }
+    // Small Properties
+    const smallProperties = [
+        { name: 'Studio Apartment', type: 'Small', price: 45000, income: 400, discount: 0.15, size: 'small' },
+        { name: '1-Bedroom Condo', type: 'Small', price: 65000, income: 550, discount: 0.2, size: 'small' },
+        { name: 'Small Townhouse', type: 'Small', price: 85000, income: 700, discount: 0.18, size: 'small' },
+        { name: 'Fixer-Upper House', type: 'Small', price: 60000, income: 500, discount: 0.3, size: 'small' },
+        { name: 'Mobile Home', type: 'Small', price: 35000, income: 300, discount: 0.25, size: 'small' },
+        { name: 'Duplex Unit', type: 'Small', price: 75000, income: 650, discount: 0.22, size: 'small' }
     ];
-
-    const numProperties = 1 + Math.floor(Math.random() * 2);
+    
+    // Medium Properties
+    const mediumProperties = [
+        { name: '2-Bedroom House', type: 'Medium', price: 150000, income: 1200, discount: 0.2, size: 'medium' },
+        { name: '3-Bedroom Home', type: 'Medium', price: 200000, income: 1500, discount: 0.18, size: 'medium' },
+        { name: 'Apartment Building (4 units)', type: 'Medium', price: 280000, income: 2800, discount: 0.15, size: 'medium' },
+        { name: 'Commercial Storefront', type: 'Medium', price: 180000, income: 2000, discount: 0.2, size: 'medium' },
+        { name: 'Suburban Home', type: 'Medium', price: 220000, income: 1800, discount: 0.16, size: 'medium' },
+        { name: 'Townhouse Complex (6 units)', type: 'Medium', price: 350000, income: 3600, discount: 0.12, size: 'medium' },
+        { name: 'Office Space', type: 'Medium', price: 250000, income: 3000, discount: 0.18, size: 'medium' }
+    ];
+    
+    // Large Properties
+    const largeProperties = [
+        { name: 'Luxury Mansion', type: 'Large', price: 800000, income: 8000, discount: 0.1, size: 'large' },
+        { name: 'Apartment Complex (20 units)', type: 'Large', price: 1200000, income: 15000, discount: 0.12, size: 'large' },
+        { name: 'Commercial Plaza', type: 'Large', price: 1500000, income: 20000, discount: 0.15, size: 'large' },
+        { name: 'Industrial Warehouse', type: 'Large', price: 900000, income: 12000, discount: 0.18, size: 'large' },
+        { name: 'Shopping Center', type: 'Large', price: 2000000, income: 30000, discount: 0.1, size: 'large' },
+        { name: 'Hotel/Motel', type: 'Large', price: 1800000, income: 25000, discount: 0.12, size: 'large' },
+        { name: 'Office Building', type: 'Large', price: 2500000, income: 40000, discount: 0.08, size: 'large' },
+        { name: 'Resort Property', type: 'Large', price: 3000000, income: 50000, discount: 0.1, size: 'large' }
+    ];
+    
+    const allProperties = [...smallProperties, ...mediumProperties, ...largeProperties];
+    const numProperties = 2 + Math.floor(Math.random() * 4); // 2-5 properties
+    
     for (let i = 0; i < numProperties; i++) {
-        const propType = propertyTypes[Math.floor(Math.random() * propertyTypes.length)];
+        const propType = allProperties[Math.floor(Math.random() * allProperties.length)];
         const property = {
             id: `property_${Date.now()}_${i}`,
             name: propType.name,
             type: propType.type,
+            size: propType.size,
             price: propType.price * (1 - propType.discount),
             originalPrice: propType.price,
             monthlyIncome: propType.income,
             discount: propType.discount,
-            description: `${propType.name} - ${(propType.discount * 100).toFixed(0)}% below market value`
+            description: `${propType.name} (${propType.size.toUpperCase()}) - ${(propType.discount * 100).toFixed(0)}% below market value`
         };
         opportunitiesSystem.currentOpportunities.properties.push(property);
     }
@@ -336,34 +365,46 @@ function displayPropertyMarket() {
 function displayQuickInvestments() {
     const quick = opportunitiesSystem.currentOpportunities.quickInvestments;
     
+    if (!quick || quick.length === 0) {
+        return '<div style="padding: 20px; text-align: center; color: var(--text-secondary);">No quick investment opportunities available this turn. Check again next turn!</div>';
+    }
+    
     return quick.map(investment => {
-        const annualReturn = investment.amount * investment.return;
+        if (!investment) return '';
+        
+        const investmentAmount = investment.amount || investment.minInvestment || 0;
+        const returnRate = investment.return || investment.annualReturn || 0;
+        const annualReturn = investmentAmount * returnRate;
+        const investmentName = investment.name || 'Investment Opportunity';
+        const investmentDesc = investment.description || 'Quick investment opportunity';
+        const investmentId = investment.id || `investment_${Date.now()}`;
+        
         return `
             <div style="background: var(--bg-dark); padding: 20px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid var(--primary-color);">
                 <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
                     <div>
-                        <h3 style="margin: 0 0 5px 0;">${investment.name}</h3>
-                        <div style="font-size: 0.9em; color: var(--text-secondary);">${investment.description}</div>
+                        <h3 style="margin: 0 0 5px 0;">${investmentName}</h3>
+                        <div style="font-size: 0.9em; color: var(--text-secondary);">${investmentDesc}</div>
                     </div>
                     <div style="text-align: right;">
-                        <div style="font-size: 1.2em; font-weight: 600; color: var(--primary-color);">${formatMoney(investment.amount)}</div>
+                        <div style="font-size: 1.2em; font-weight: 600; color: var(--primary-color);">${formatMoney(investmentAmount)}</div>
                         <div style="font-size: 0.85em; color: var(--text-secondary);">Minimum Investment</div>
                     </div>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
                     <div>
                         <div style="font-size: 0.85em; color: var(--text-secondary);">Expected Annual Return</div>
-                        <div style="font-size: 1.1em; font-weight: 600; color: var(--success-color);">${(investment.return * 100).toFixed(1)}%</div>
+                        <div style="font-size: 1.1em; font-weight: 600; color: var(--success-color);">${(returnRate * 100).toFixed(1)}%</div>
                     </div>
                     <div>
                         <div style="font-size: 0.85em; color: var(--text-secondary);">Annual Income</div>
                         <div style="font-size: 1.1em; font-weight: 600; color: var(--success-color);">${formatMoney(annualReturn)}</div>
                     </div>
                 </div>
-                <button class="btn-primary" onclick="quickInvest('${investment.id}')" style="width: 100%; margin-top: 15px;">Invest</button>
+                <button class="btn-primary" onclick="quickInvest('${investmentId}')" style="width: 100%; margin-top: 15px;">Invest</button>
             </div>
         `;
-    }).join('');
+    }).filter(html => html !== '').join('');
 }
 
 // Investment Actions
@@ -380,7 +421,8 @@ function investInBusiness(businessId) {
     opportunitiesSystem.playerBusinesses.push({
         ...business,
         id: `player_business_${Date.now()}`,
-        monthlyIncome: business.monthlyIncome * (0.9 + Math.random() * 0.2) // Vary income
+        monthlyIncome: business.monthlyIncome * (0.9 + Math.random() * 0.2), // Vary income
+        purchaseTurn: gameState.turn
     });
 
     // Log transaction
@@ -495,24 +537,46 @@ function quickInvest(investmentId) {
 
 // Modal Functions
 function closeInvestmentModal() {
-    document.getElementById('investment-modal').classList.remove('active');
+    if (typeof closeModalById === 'function') {
+        closeModalById('investment-modal');
+    } else {
+        const modal = document.getElementById('investment-modal');
+        if (modal) modal.classList.remove('active');
+    }
 }
 
 function openInvestmentModal() {
     generateOpportunities();
     displayInvestmentOpportunities();
-    document.getElementById('investment-modal').classList.add('active');
+    
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('investment-modal')) return;
+    } else {
+        const modal = document.getElementById('investment-modal');
+        if (modal) modal.classList.add('active');
+    }
 }
 
 function closeMarketsModal() {
-    document.getElementById('markets-modal').classList.remove('active');
+    if (typeof closeModalById === 'function') {
+        closeModalById('markets-modal');
+    } else {
+        const modal = document.getElementById('markets-modal');
+        if (modal) modal.classList.remove('active');
+    }
 }
 
 function openMarketsModal() {
     const modal = document.getElementById('markets-modal');
     if (!modal) return;
     
-    modal.classList.add('active');
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('markets-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
     updateMarketDisplay();
     
     // Update market display when type changes

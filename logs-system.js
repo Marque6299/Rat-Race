@@ -155,19 +155,44 @@ function initializeLoggingSystem() {
 // Open Logs Modal
 function openLogsModal() {
     const modal = document.getElementById('logs-modal');
-    if (!modal) return;
+    if (!modal) {
+        console.warn('Logs modal not found');
+        if (typeof showToast === 'function') {
+            showToast('Logs modal not available', 'error');
+        }
+        return;
+    }
     
-    displayLogsContent('transactions');
-    modal.classList.add('active');
+    // Use modal manager - allow stacking on top of other modals
+    if (typeof openModal === 'function') {
+        // Force open and allow stacking (logs modal should always be on top)
+        openModal('logs-modal', true, true);
+        // Ensure logs modal is on top by setting high z-index after opening
+        setTimeout(() => {
+            if (typeof updateModalZIndexes === 'function') {
+                updateModalZIndexes();
+            }
+            const currentZIndex = parseInt(modal.style.zIndex) || 1095;
+            modal.style.zIndex = currentZIndex + 100; // Extra boost to ensure it's on top
+        }, 10);
+    } else {
+        modal.classList.add('active');
+        modal.style.zIndex = '1200'; // High z-index if modal manager not available
+    }
     
-    // Tab switching
-    document.querySelectorAll('.logs-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.logs-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            displayLogsContent(btn.dataset.tab);
+    // Display content after a brief delay to ensure modal is visible
+    setTimeout(() => {
+        displayLogsContent('transactions');
+        
+        // Tab switching
+        document.querySelectorAll('.logs-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.logs-tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                displayLogsContent(btn.dataset.tab);
+            });
         });
-    });
+    }, 100);
 }
 
 function displayLogsContent(tab) {

@@ -97,7 +97,9 @@ function calculateCreditMix() {
     // Variety of credit types
     const hasLoans = gameState.player.loans.length > 0;
     const hasProperties = gameState.player.properties.length > 0;
-    const hasPortfolio = getTotalPortfolioValue() > 0;
+    const hasPortfolio = typeof getTotalPortfolioValue === 'function' ? 
+        getTotalPortfolioValue() > 0 : 
+        Object.keys(gameState.player.portfolio).some(type => gameState.player.portfolio[type].length > 0);
     
     let mix = 0;
     if (hasLoans) mix += 50;
@@ -134,9 +136,15 @@ function openBankModal() {
     const modal = document.getElementById('bank-modal');
     if (!modal) return;
     
+    // Use modal manager
+    if (typeof openModal === 'function') {
+        if (!openModal('bank-modal')) return;
+    } else {
+        modal.classList.add('active');
+    }
+    
     calculateCreditScore();
     displayBankContent('account');
-    modal.classList.add('active');
     
     // Tab switching
     document.querySelectorAll('.bank-tab-btn').forEach(btn => {
